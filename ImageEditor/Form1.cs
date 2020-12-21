@@ -37,7 +37,7 @@ namespace ImageEditor
         private void toolStripFileNew_Click(object sender, EventArgs e)
         {
             // create an image of the desired size
-            var bitmap = new Bitmap(800, 600);
+            var bitmap = new Bitmap(400, 300);
 
             using (var graphics = Graphics.FromImage(bitmap))
             {
