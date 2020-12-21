@@ -1,0 +1,10 @@
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe.config
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\bin\Debug\ImageEditor.exe
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\bin\Debug\ImageEditor.pdb
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csprojAssemblyReference.cache
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.Form1.resources
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.Properties.Resources.resources
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.GenerateResource.cache
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
+D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb
