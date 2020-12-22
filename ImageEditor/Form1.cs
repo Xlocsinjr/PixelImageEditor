@@ -15,6 +15,7 @@ namespace ImageEditor
         public Form1()
         {
             InitializeComponent();
+            NewImage();
 
         }
 
@@ -36,6 +37,14 @@ namespace ImageEditor
 
         private void toolStripFileNew_Click(object sender, EventArgs e)
         {
+            NewImage();
+        }
+
+
+
+
+        private void NewImage()
+        {
             // create an image of the desired size
             var bitmap = new Bitmap(400, 300);
 
@@ -47,11 +56,30 @@ namespace ImageEditor
                 // From: https://stackoverflow.com/questions/61513832/how-to-edit-image-in-c-sharp;
 
                 // set background color
-                graphics.Clear(Color.White);
+                graphics.Clear(Color.Black);
             }
 
             pictureBox1.Image = bitmap;
+        }
 
+        private void buttonBgPlainColourChoose_Click(object sender, EventArgs e)
+        {
+            // Show the color dialog. If the user clicks OK, load the
+            // picture that the user chose.
+            if (colorDialogBgPlainColour.ShowDialog() == DialogResult.OK)
+            {
+                // create an image of the desired size
+                var bitmap = new Bitmap(400, 300);
+
+                using (var graphics = Graphics.FromImage(bitmap))
+                {
+                    // set background color
+                    graphics.Clear(colorDialogBgPlainColour.Color);
+                }
+
+                pictureBoxBgPlainColourPreview.Image = bitmap;
+                pictureBox1.Image = bitmap;
+            }
         }
     }
 }
