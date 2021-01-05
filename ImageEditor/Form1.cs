@@ -17,6 +17,8 @@ namespace ImageEditor
         public static int IMG_WIDTH = 200;
         public static int IMG_HEIGHT = 150;
 
+        int StarNoiseThreshold;
+
         ImageList BgPresetImgs = new ImageList();
 
         // Declare layer images list
@@ -135,6 +137,10 @@ namespace ImageEditor
 
             // Update background layer to black
             UpdateLayer(Layers.Background, bgBitmap);
+
+
+            // Turns off any additional options
+            StarsCheckBox.Checked = false;
         }
 
         private void buttonBgPlainColourChoose_Click(object sender, EventArgs e)
@@ -205,6 +211,39 @@ namespace ImageEditor
 
             // Updates the image shown in the picture box
             ShowCombinedLayers();
+        }
+
+        private void StarsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // generates white star pixels if checkbox is checked, else clears star layer
+            if (StarsCheckBox.Checked)
+            {
+                GenerateStars();
+            }
+            else
+            {
+                Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+                UpdateLayer(Layers.Star, newStarBitmap);
+            }
+        }
+
+        void GenerateStars()
+        {
+            StarNoiseThreshold = 990;
+            Random rnumber = new Random();
+
+            Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+            for (int y = 0; y < IMG_HEIGHT; y++)
+            {
+                for (int x = 0; x < IMG_WIDTH; x++)
+                {
+                    if (rnumber.Next(1000) > StarNoiseThreshold)
+                    {
+                        newStarBitmap.SetPixel(x, y, Color.White);
+                    }
+                }
+            }
+            UpdateLayer(Layers.Star, newStarBitmap);
         }
     }
 }

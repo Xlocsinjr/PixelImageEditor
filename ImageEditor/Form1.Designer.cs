@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Text2", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Text2", 0);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFileNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +43,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBoxBg = new System.Windows.Forms.GroupBox();
             this.flowLayoutBgStars = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.StarsCheckBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.listViewBgChoose = new System.Windows.Forms.ListView();
@@ -90,32 +90,32 @@
             // toolStripFileNew
             // 
             this.toolStripFileNew.Name = "toolStripFileNew";
-            this.toolStripFileNew.Size = new System.Drawing.Size(180, 22);
+            this.toolStripFileNew.Size = new System.Drawing.Size(103, 22);
             this.toolStripFileNew.Text = "New";
             this.toolStripFileNew.Click += new System.EventHandler(this.toolStripFileNew_Click);
             // 
             // toolStripFileOpen
             // 
             this.toolStripFileOpen.Name = "toolStripFileOpen";
-            this.toolStripFileOpen.Size = new System.Drawing.Size(180, 22);
+            this.toolStripFileOpen.Size = new System.Drawing.Size(103, 22);
             this.toolStripFileOpen.Text = "Open";
             this.toolStripFileOpen.Click += new System.EventHandler(this.toolStripFileOpen_Click);
             // 
             // toolStripFileSave
             // 
             this.toolStripFileSave.Name = "toolStripFileSave";
-            this.toolStripFileSave.Size = new System.Drawing.Size(180, 22);
+            this.toolStripFileSave.Size = new System.Drawing.Size(103, 22);
             this.toolStripFileSave.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
             // 
             // toolStripFileExit
             // 
             this.toolStripFileExit.Name = "toolStripFileExit";
-            this.toolStripFileExit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripFileExit.Size = new System.Drawing.Size(103, 22);
             this.toolStripFileExit.Text = "Exit";
             this.toolStripFileExit.Click += new System.EventHandler(this.toolStripFileExit_Click);
             // 
@@ -187,7 +187,7 @@
             // 
             // flowLayoutBgStars
             // 
-            this.flowLayoutBgStars.Controls.Add(this.checkBox1);
+            this.flowLayoutBgStars.Controls.Add(this.StarsCheckBox);
             this.flowLayoutBgStars.Controls.Add(this.button1);
             this.flowLayoutBgStars.Controls.Add(this.trackBar1);
             this.flowLayoutBgStars.Dock = System.Windows.Forms.DockStyle.Top;
@@ -196,28 +196,30 @@
             this.flowLayoutBgStars.Size = new System.Drawing.Size(586, 57);
             this.flowLayoutBgStars.TabIndex = 3;
             // 
-            // checkBox1
+            // StarsCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(3, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.StarsCheckBox.AutoSize = true;
+            this.StarsCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.StarsCheckBox.Name = "StarsCheckBox";
+            this.StarsCheckBox.Size = new System.Drawing.Size(50, 17);
+            this.StarsCheckBox.TabIndex = 0;
+            this.StarsCheckBox.Text = "Stars";
+            this.StarsCheckBox.UseVisualStyleBackColor = true;
+            this.StarsCheckBox.CheckedChanged += new System.EventHandler(this.StarsCheckBox_CheckedChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(89, 3);
+            this.button1.Location = new System.Drawing.Point(59, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Regenerate";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.StarsCheckBox_CheckedChanged);
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(170, 3);
+            this.trackBar1.Location = new System.Drawing.Point(140, 3);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 2;
@@ -227,7 +229,7 @@
             this.listViewBgChoose.Dock = System.Windows.Forms.DockStyle.Top;
             this.listViewBgChoose.HideSelection = false;
             this.listViewBgChoose.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listViewBgChoose.Location = new System.Drawing.Point(3, 72);
             this.listViewBgChoose.Name = "listViewBgChoose";
             this.listViewBgChoose.Size = new System.Drawing.Size(586, 68);
@@ -337,7 +339,7 @@
         private System.Windows.Forms.PictureBox pictureBoxBgPlainColourPreview;
         private System.Windows.Forms.ColorDialog colorDialogBgPlainColour;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutBgStars;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox StarsCheckBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TrackBar trackBar1;
     }
