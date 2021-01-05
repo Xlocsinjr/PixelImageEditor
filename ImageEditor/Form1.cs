@@ -19,31 +19,31 @@ namespace ImageEditor
 
         ImageList BgPresetImgs = new ImageList();
 
-        // The current combined image.
-        private Bitmap CombinedBitmap = null;
-
         // Declare layer images list
-        private List<Image> LayersList = new List<Image> { };
+        private List<Bitmap> LayersList; 
 
+        // Declare list of the enums so the indeces can later be retrieved
+        List<Layers> LayersIndeces;
+
+        // Declare enum of layers. 
+        // To declare additional layers, simply add a new entry in the enum.
         public enum Layers
         {
             Background,
             Star,
         }
 
-        // Declare list of the enums so the indeces can later be retrieved
-        List<Layers> LayersIndeces = new List<Layers> {};
 
-
-
+        // CONSTRUCTOR
         public Form1()
         {
             InitializeComponent();
-            ListviewBgChooseInit();
-            NewImage();
-
+            
             // Open on Plain colour on the combobox for the background layers
             comboBoxBg.SelectedIndex = 0;
+
+            LayersList = new List<Bitmap> { };
+            LayersIndeces = new List<Layers> { };
 
             // Initialises the LayersIndeces to contain the enums so the indeces can later be retrieved
             // Also initialises the layerslist with empty transparent images
@@ -56,7 +56,8 @@ namespace ImageEditor
                 LayersList.Add(newBitmap);
             }
 
-
+            ListviewBgChooseInit();
+            NewImage();
             //pictureBox1.Image = Image.FromFile(@"..\..\SourceImages\testImage.png");
 
         }
@@ -110,10 +111,18 @@ namespace ImageEditor
 
         private void NewImage()
         {
-            // create an image of the desired size
-            var bitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+            // resets all layers to blank
+            LayersList = new List<Bitmap> { };
+            foreach (Layers l in LayersIndeces)
+            {
+                // create an image of the desired size
+                var newBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+                LayersList.Add(newBitmap);
+            }
 
-            using (var graphics = Graphics.FromImage(bitmap))
+            // Clears bgBitmap
+            var bgBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+            using (var graphics = Graphics.FromImage(bgBitmap))
             {
                 // specify the desired quality of the render and text, if you wish
                 //graphics.CompositingQuality = CompositingQuality.HighQuality;
@@ -124,7 +133,8 @@ namespace ImageEditor
                 graphics.Clear(Color.Black);
             }
 
-            pictureBox1.Image = bitmap;
+            // Update background layer to black
+            UpdateLayer(Layers.Background, bgBitmap);
         }
 
         private void buttonBgPlainColourChoose_Click(object sender, EventArgs e)
@@ -145,14 +155,8 @@ namespace ImageEditor
                 // Updates the plain colour preview box
                 pictureBoxBgPlainColourPreview.Image = bgBitmap;
 
-                // retrieves the index of the Layers.Background enum in LayersIndeces
-                int bgIndex = LayersIndeces.IndexOf(Layers.Background);
-
-                // Replaces the background image in the layersList to the new background
-                LayersList[bgIndex] = bgBitmap;
-
-                // Updates the image shown in the picture box
-                ShowCombinedLayers();
+                // Update background layer to new colour
+                UpdateLayer(Layers.Background, bgBitmap);
             }
         }
 
@@ -185,11 +189,22 @@ namespace ImageEditor
                 {
                     gr.DrawImage(layer, location);
                 }
-                
             }
 
             // Display the result.
             pictureBox1.Image = CombinedBitmap;
+        }
+
+        void UpdateLayer(Layers layer, Bitmap bitmap)
+        {
+            // retrieves the index of the Layers.Background enum in LayersIndeces
+            int bgIndex = LayersIndeces.IndexOf(layer);
+
+            // Replaces the image in the layersList to the new bitmap
+            LayersList[bgIndex] = bitmap;
+
+            // Updates the image shown in the picture box
+            ShowCombinedLayers();
         }
     }
 }
