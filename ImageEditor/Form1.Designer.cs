@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Text2", 0);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFileNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,13 +40,17 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBoxBg = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.BgTablePlainColour = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.groupBoxBg = new System.Windows.Forms.GroupBox();
+            this.flowLayoutBgStars = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.listViewBgChoose = new System.Windows.Forms.ListView();
+            this.BgTablePlainColour = new System.Windows.Forms.TableLayoutPanel();
             this.buttonBgPlainColourChoose = new System.Windows.Forms.Button();
             this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
+            this.comboBoxBg = new System.Windows.Forms.ComboBox();
             this.colorDialogBgPlainColour = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -54,6 +59,8 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxBg.SuspendLayout();
+            this.flowLayoutBgStars.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.BgTablePlainColour.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBgPlainColourPreview)).BeginInit();
             this.SuspendLayout();
@@ -83,32 +90,32 @@
             // toolStripFileNew
             // 
             this.toolStripFileNew.Name = "toolStripFileNew";
-            this.toolStripFileNew.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileNew.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileNew.Text = "New";
             this.toolStripFileNew.Click += new System.EventHandler(this.toolStripFileNew_Click);
             // 
             // toolStripFileOpen
             // 
             this.toolStripFileOpen.Name = "toolStripFileOpen";
-            this.toolStripFileOpen.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileOpen.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileOpen.Text = "Open";
             this.toolStripFileOpen.Click += new System.EventHandler(this.toolStripFileOpen_Click);
             // 
             // toolStripFileSave
             // 
             this.toolStripFileSave.Name = "toolStripFileSave";
-            this.toolStripFileSave.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileSave.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileSave.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripFileExit
             // 
             this.toolStripFileExit.Name = "toolStripFileExit";
-            this.toolStripFileExit.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileExit.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileExit.Text = "Exit";
             this.toolStripFileExit.Click += new System.EventHandler(this.toolStripFileExit_Click);
             // 
@@ -154,30 +161,79 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 197);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(592, 100);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // groupBoxBg
             // 
-            this.groupBoxBg.Controls.Add(this.listView1);
+            this.groupBoxBg.Controls.Add(this.flowLayoutBgStars);
+            this.groupBoxBg.Controls.Add(this.listViewBgChoose);
             this.groupBoxBg.Controls.Add(this.BgTablePlainColour);
-            this.groupBoxBg.Controls.Add(this.comboBox1);
+            this.groupBoxBg.Controls.Add(this.comboBoxBg);
             this.groupBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxBg.Location = new System.Drawing.Point(0, 0);
             this.groupBoxBg.Name = "groupBoxBg";
-            this.groupBoxBg.Size = new System.Drawing.Size(592, 143);
+            this.groupBoxBg.Size = new System.Drawing.Size(592, 197);
             this.groupBoxBg.TabIndex = 0;
             this.groupBoxBg.TabStop = false;
             this.groupBoxBg.Text = "Background";
             // 
-            // comboBox1
+            // flowLayoutBgStars
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Plain Colour"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(586, 21);
-            this.comboBox1.TabIndex = 0;
+            this.flowLayoutBgStars.Controls.Add(this.checkBox1);
+            this.flowLayoutBgStars.Controls.Add(this.button1);
+            this.flowLayoutBgStars.Controls.Add(this.trackBar1);
+            this.flowLayoutBgStars.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutBgStars.Location = new System.Drawing.Point(3, 140);
+            this.flowLayoutBgStars.Name = "flowLayoutBgStars";
+            this.flowLayoutBgStars.Size = new System.Drawing.Size(586, 57);
+            this.flowLayoutBgStars.TabIndex = 3;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(3, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(89, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(170, 3);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 2;
+            // 
+            // listViewBgChoose
+            // 
+            this.listViewBgChoose.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listViewBgChoose.HideSelection = false;
+            this.listViewBgChoose.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listViewBgChoose.Location = new System.Drawing.Point(3, 72);
+            this.listViewBgChoose.Name = "listViewBgChoose";
+            this.listViewBgChoose.Size = new System.Drawing.Size(586, 68);
+            this.listViewBgChoose.TabIndex = 2;
+            this.listViewBgChoose.UseCompatibleStateImageBehavior = false;
+            this.listViewBgChoose.View = System.Windows.Forms.View.Tile;
             // 
             // BgTablePlainColour
             // 
@@ -193,26 +249,6 @@
             this.BgTablePlainColour.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.61728F));
             this.BgTablePlainColour.Size = new System.Drawing.Size(586, 35);
             this.BgTablePlainColour.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 143);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(592, 100);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // listView1
-            // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 72);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(586, 68);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // buttonBgPlainColourChoose
             // 
@@ -234,6 +270,20 @@
             this.pictureBoxBgPlainColourPreview.TabIndex = 1;
             this.pictureBoxBgPlainColourPreview.TabStop = false;
             // 
+            // comboBoxBg
+            // 
+            this.comboBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
+            this.comboBoxBg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBg.FormattingEnabled = true;
+            this.comboBoxBg.Items.AddRange(new object[] {
+            "Plain Colour",
+            "Background images"});
+            this.comboBoxBg.Location = new System.Drawing.Point(3, 16);
+            this.comboBoxBg.Name = "comboBoxBg";
+            this.comboBoxBg.Size = new System.Drawing.Size(586, 21);
+            this.comboBoxBg.TabIndex = 0;
+            this.comboBoxBg.SelectedIndexChanged += new System.EventHandler(this.comboBoxBg_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +304,9 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBoxBg.ResumeLayout(false);
+            this.flowLayoutBgStars.ResumeLayout(false);
+            this.flowLayoutBgStars.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.BgTablePlainColour.ResumeLayout(false);
             this.BgTablePlainColour.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBgPlainColourPreview)).EndInit();
@@ -278,11 +331,15 @@
         private System.Windows.Forms.GroupBox groupBoxBg;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel BgTablePlainColour;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ComboBox comboBoxBg;
+        private System.Windows.Forms.ListView listViewBgChoose;
         private System.Windows.Forms.Button buttonBgPlainColourChoose;
         private System.Windows.Forms.PictureBox pictureBoxBgPlainColourPreview;
         private System.Windows.Forms.ColorDialog colorDialogBgPlainColour;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutBgStars;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
 
