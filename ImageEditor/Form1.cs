@@ -21,6 +21,8 @@ namespace ImageEditor
 
         ImageList BgPresetImgs = new ImageList();
 
+        Bitmap CombinedBitmap;
+
         // Declare layer images list
         private List<Bitmap> LayersList; 
 
@@ -185,7 +187,9 @@ namespace ImageEditor
         {
             // http://csharphelper.com/blog/2016/11/overlay-images-in-c/
             // Combines layers into a single image;
-            Bitmap CombinedBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+            CombinedBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+
+            int zoomfactor = 3;
 
             // Overlays the images of each layer
             using (Graphics gr = Graphics.FromImage(CombinedBitmap))
@@ -197,8 +201,28 @@ namespace ImageEditor
                 }
             }
 
-            // Display the result.
-            pictureBox1.Image = CombinedBitmap;
+            // Creates a larger version of the combined bitmap for display
+            int zoomedWidth = Convert.ToInt32(IMG_WIDTH * zoomfactor);
+            int zoomedHeight = Convert.ToInt32(IMG_HEIGHT * zoomfactor);
+            Bitmap zoomedCombinedBitmap = new Bitmap(zoomedWidth, zoomedHeight);
+
+            using (Graphics gpu = Graphics.FromImage(zoomedCombinedBitmap))
+            {
+                gpu.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+
+                gpu.DrawImage(
+                   CombinedBitmap,
+                    new Rectangle(0, 0, zoomedWidth, zoomedHeight),
+                    // destination rectangle 
+                    0,
+                    0,           // upper-left corner of source rectangle
+                    CombinedBitmap.Width,       // width of source rectangle
+                    CombinedBitmap.Height,      // height of source rectangle
+                    GraphicsUnit.Pixel);
+                    
+                // Display the zoomed result.
+                pictureBox1.Image = zoomedCombinedBitmap;
+            }
         }
 
         void UpdateLayer(Layers layer, Bitmap bitmap)
