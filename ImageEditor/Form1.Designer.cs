@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Text2", 0);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFileNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +38,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBoxBg = new System.Windows.Forms.GroupBox();
             this.flowLayoutBgStars = new System.Windows.Forms.FlowLayoutPanel();
@@ -49,19 +47,20 @@
             this.listViewBgChoose = new System.Windows.Forms.ListView();
             this.BgTablePlainColour = new System.Windows.Forms.TableLayoutPanel();
             this.buttonBgPlainColourChoose = new System.Windows.Forms.Button();
-            this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
             this.comboBoxBg = new System.Windows.Forms.ComboBox();
             this.colorDialogBgPlainColour = new System.Windows.Forms.ColorDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxBg.SuspendLayout();
             this.flowLayoutBgStars.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.BgTablePlainColour.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBgPlainColourPreview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,16 +150,6 @@
             this.splitContainer1.SplitterDistance = 297;
             this.splitContainer1.TabIndex = 2;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -221,21 +210,20 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(140, 3);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.Size = new System.Drawing.Size(262, 45);
             this.trackBar1.TabIndex = 2;
             // 
             // listViewBgChoose
             // 
             this.listViewBgChoose.Dock = System.Windows.Forms.DockStyle.Top;
             this.listViewBgChoose.HideSelection = false;
-            this.listViewBgChoose.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
             this.listViewBgChoose.Location = new System.Drawing.Point(3, 72);
             this.listViewBgChoose.Name = "listViewBgChoose";
             this.listViewBgChoose.Size = new System.Drawing.Size(586, 68);
             this.listViewBgChoose.TabIndex = 2;
             this.listViewBgChoose.UseCompatibleStateImageBehavior = false;
             this.listViewBgChoose.View = System.Windows.Forms.View.Tile;
+            this.listViewBgChoose.SelectedIndexChanged += new System.EventHandler(this.listViewBgChoose_SelectedIndexChanged);
             // 
             // BgTablePlainColour
             // 
@@ -263,15 +251,6 @@
             this.buttonBgPlainColourChoose.UseVisualStyleBackColor = true;
             this.buttonBgPlainColourChoose.Click += new System.EventHandler(this.buttonBgPlainColourChoose_Click);
             // 
-            // pictureBoxBgPlainColourPreview
-            // 
-            this.pictureBoxBgPlainColourPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxBgPlainColourPreview.Location = new System.Drawing.Point(296, 3);
-            this.pictureBoxBgPlainColourPreview.Name = "pictureBoxBgPlainColourPreview";
-            this.pictureBoxBgPlainColourPreview.Size = new System.Drawing.Size(29, 29);
-            this.pictureBoxBgPlainColourPreview.TabIndex = 1;
-            this.pictureBoxBgPlainColourPreview.TabStop = false;
-            // 
             // comboBoxBg
             // 
             this.comboBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
@@ -285,6 +264,25 @@
             this.comboBoxBg.Size = new System.Drawing.Size(586, 21);
             this.comboBoxBg.TabIndex = 0;
             this.comboBoxBg.SelectedIndexChanged += new System.EventHandler(this.comboBoxBg_SelectedIndexChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBoxBgPlainColourPreview
+            // 
+            this.pictureBoxBgPlainColourPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBoxBgPlainColourPreview.Location = new System.Drawing.Point(296, 3);
+            this.pictureBoxBgPlainColourPreview.Name = "pictureBoxBgPlainColourPreview";
+            this.pictureBoxBgPlainColourPreview.Size = new System.Drawing.Size(29, 29);
+            this.pictureBoxBgPlainColourPreview.TabIndex = 1;
+            this.pictureBoxBgPlainColourPreview.TabStop = false;
             // 
             // Form1
             // 
@@ -304,13 +302,13 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBoxBg.ResumeLayout(false);
             this.flowLayoutBgStars.ResumeLayout(false);
             this.flowLayoutBgStars.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.BgTablePlainColour.ResumeLayout(false);
             this.BgTablePlainColour.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBgPlainColourPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -19,7 +19,8 @@ namespace ImageEditor
 
         int StarNoiseThreshold;
 
-        ImageList BgPresetImgs = new ImageList();
+        ImageList BgPresetImgs = new ImageList(); // for the listview
+        List<Image> BgPresets = new List<Image> { };
 
         Bitmap CombinedBitmap;
 
@@ -42,6 +43,8 @@ namespace ImageEditor
         public Form1()
         {
             InitializeComponent();
+
+            pictureBox1.Image = Properties.Resources.BgPresetSky;
             
             // Open on Plain colour on the combobox for the background layers
             comboBoxBg.SelectedIndex = 0;
@@ -66,28 +69,7 @@ namespace ImageEditor
 
         }
 
-        private void ListviewBgChooseInit()
-        {
-            // https://stackoverflow.com/questions/17151776/c-sharp-listview-adding-item-with-image-and-text-and-align-the-text-to-left
-            //retrieve all image files
-            String[] ImageFiles = Directory.GetFiles(@".\SourceImages\");
-            foreach (var file in ImageFiles)
-            {
-                //Add images to Imagelist
-                BgPresetImgs.Images.Add(Image.FromFile(file));
-            }
-
-            pictureBox1.Image = Image.FromFile(@"..\..\SourceImages\testImage.png");
-
-            //set the amall and large ImageList properties of listview
-            listViewBgChoose.LargeImageList = BgPresetImgs;
-            listViewBgChoose.SmallImageList = BgPresetImgs;
-
-            listViewBgChoose.View = View.LargeIcon;
-            listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 0 , Text="test"});
-
-            
-        }
+        
 
         private void toolStripFileOpen_Click(object sender, EventArgs e)
         {
@@ -183,6 +165,46 @@ namespace ImageEditor
             }
         }
 
+        // ======================================= BACKGROUND PRESETS ======================================
+        private void ListviewBgChooseInit()
+        {
+            //Add images to Imagelist
+            BgPresetImgs.Images.Add(Properties.Resources.BgPresetSky);
+            BgPresetImgs.Images.Add(Properties.Resources.testImage);
+
+            //set the small and large ImageList properties of listview
+            listViewBgChoose.LargeImageList = BgPresetImgs;
+            listViewBgChoose.SmallImageList = BgPresetImgs;
+
+            listViewBgChoose.View = View.LargeIcon;
+            listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 0, Text = "Sky" });
+            listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 1, Text = "test" });
+
+
+        }
+
+        private void listViewBgChoose_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewBgChoose.SelectedIndices.Count == 1)
+            {
+                // listViewBgChoose.SelectedIndices[0]
+                Image chosenPreset = BgPresetImgs.Images[0];
+                Bitmap bm = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+
+                using (Graphics gr = Graphics.FromImage(bm))
+                {
+                    Point location = new Point(0, 0);
+                    gr.DrawImage(chosenPreset, location);
+
+                }
+
+                UpdateLayer(Layers.Background, bm);
+
+            }
+
+        }
+
+
         private void ShowCombinedLayers()
         {
             // http://csharphelper.com/blog/2016/11/overlay-images-in-c/
@@ -269,5 +291,7 @@ namespace ImageEditor
             }
             UpdateLayer(Layers.Star, newStarBitmap);
         }
+
+        
     }
 }
