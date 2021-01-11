@@ -19,8 +19,8 @@ namespace ImageEditor
 
         int StarNoiseThreshold;
 
-        ImageList BgPresetImgs = new ImageList(); // for the listview
-        List<Image> BgPresets = new List<Image> { };
+        ImageList BgPresetImgList = new ImageList(); // for the listview thumbnails
+        List<Image> BgPresetImgs = new List<Image> { }; // for the preset imgs
 
         Bitmap CombinedBitmap;
 
@@ -168,13 +168,15 @@ namespace ImageEditor
         // ======================================= BACKGROUND PRESETS ======================================
         private void ListviewBgChooseInit()
         {
-            //Add images to Imagelist
-            BgPresetImgs.Images.Add(Properties.Resources.BgPresetSky);
-            BgPresetImgs.Images.Add(Properties.Resources.testImage);
+            // Add the all the premade background images to the imagelist and list of images
+            // NOTE: somehow retrieving images from the ImageList only returns a thumbnail sized image so a second
+            // list of images is needed to contain the true sized presets.
+            addPresetsToLists(BgPresetImgList, BgPresetImgs, Properties.Resources.BgPresetSky);
+            addPresetsToLists(BgPresetImgList, BgPresetImgs, Properties.Resources.testImage);
 
             //set the small and large ImageList properties of listview
-            listViewBgChoose.LargeImageList = BgPresetImgs;
-            listViewBgChoose.SmallImageList = BgPresetImgs;
+            listViewBgChoose.LargeImageList = BgPresetImgList;
+            listViewBgChoose.SmallImageList = BgPresetImgList;
 
             listViewBgChoose.View = View.LargeIcon;
             listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 0, Text = "Sky" });
@@ -183,20 +185,22 @@ namespace ImageEditor
 
         }
 
+        private void addPresetsToLists(ImageList imgList, List<Image> list, Image img)
+        {
+            // Adds an image to an ImageList and to a list of Images
+            imgList.Images.Add(img);
+            list.Add(img);
+        }
+
         private void listViewBgChoose_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewBgChoose.SelectedIndices.Count == 1)
             {
-                // listViewBgChoose.SelectedIndices[0]
-                Image chosenPreset = BgPresetImgs.Images[0];
-                Bitmap bm = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
-
-                using (Graphics gr = Graphics.FromImage(bm))
-                {
-                    Point location = new Point(0, 0);
-                    gr.DrawImage(chosenPreset, location);
-
-                }
+                // Updates background layer with chosen preset image by retrieving the chosen item index
+                // and retrieving the corresponding preset image from the list of preset images of the same index
+                var chosenPreset = listViewBgChoose.SelectedIndices[0];
+                Image img = BgPresetImgs[chosenPreset];
+                Bitmap bm = new Bitmap(img, IMG_WIDTH, IMG_HEIGHT);
 
                 UpdateLayer(Layers.Background, bm);
 
