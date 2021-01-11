@@ -19,7 +19,8 @@ namespace ImageEditor
 
         int StarNoiseThreshold;
 
-        ImageList BgPresetImgs = new ImageList();
+        ImageList BgPresetImgList = new ImageList(); // for the listview thumbnails
+        List<Image> BgPresetImgs = new List<Image> { }; // for the preset imgs
 
         Bitmap CombinedBitmap;
 
@@ -42,6 +43,8 @@ namespace ImageEditor
         public Form1()
         {
             InitializeComponent();
+
+            pictureBox1.Image = Properties.Resources.BgPresetSky;
             
             // Open on Plain colour on the combobox for the background layers
             comboBoxBg.SelectedIndex = 0;
@@ -66,28 +69,7 @@ namespace ImageEditor
 
         }
 
-        private void ListviewBgChooseInit()
-        {
-            // https://stackoverflow.com/questions/17151776/c-sharp-listview-adding-item-with-image-and-text-and-align-the-text-to-left
-            //retrieve all image files
-            String[] ImageFiles = Directory.GetFiles(@".\SourceImages\");
-            foreach (var file in ImageFiles)
-            {
-                //Add images to Imagelist
-                BgPresetImgs.Images.Add(Image.FromFile(file));
-            }
-
-            pictureBox1.Image = Image.FromFile(@"..\..\SourceImages\testImage.png");
-
-            //set the amall and large ImageList properties of listview
-            listViewBgChoose.LargeImageList = BgPresetImgs;
-            listViewBgChoose.SmallImageList = BgPresetImgs;
-
-            listViewBgChoose.View = View.LargeIcon;
-            listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 0 , Text="test"});
-
-            
-        }
+        
 
         private void toolStripFileOpen_Click(object sender, EventArgs e)
         {
@@ -183,6 +165,50 @@ namespace ImageEditor
             }
         }
 
+        // ======================================= BACKGROUND PRESETS ======================================
+        private void ListviewBgChooseInit()
+        {
+            // Add the all the premade background images to the imagelist and list of images
+            // NOTE: somehow retrieving images from the ImageList only returns a thumbnail sized image so a second
+            // list of images is needed to contain the true sized presets.
+            addPresetsToLists(BgPresetImgList, BgPresetImgs, Properties.Resources.BgPresetSky);
+            addPresetsToLists(BgPresetImgList, BgPresetImgs, Properties.Resources.testImage);
+
+            //set the small and large ImageList properties of listview
+            listViewBgChoose.LargeImageList = BgPresetImgList;
+            listViewBgChoose.SmallImageList = BgPresetImgList;
+
+            listViewBgChoose.View = View.LargeIcon;
+            listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 0, Text = "Sky" });
+            listViewBgChoose.Items.Add(new ListViewItem() { ImageIndex = 1, Text = "test" });
+
+
+        }
+
+        private void addPresetsToLists(ImageList imgList, List<Image> list, Image img)
+        {
+            // Adds an image to an ImageList and to a list of Images
+            imgList.Images.Add(img);
+            list.Add(img);
+        }
+
+        private void listViewBgChoose_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewBgChoose.SelectedIndices.Count == 1)
+            {
+                // Updates background layer with chosen preset image by retrieving the chosen item index
+                // and retrieving the corresponding preset image from the list of preset images of the same index
+                var chosenPreset = listViewBgChoose.SelectedIndices[0];
+                Image img = BgPresetImgs[chosenPreset];
+                Bitmap bm = new Bitmap(img, IMG_WIDTH, IMG_HEIGHT);
+
+                UpdateLayer(Layers.Background, bm);
+
+            }
+
+        }
+
+
         private void ShowCombinedLayers()
         {
             // http://csharphelper.com/blog/2016/11/overlay-images-in-c/
@@ -269,5 +295,7 @@ namespace ImageEditor
             }
             UpdateLayer(Layers.Star, newStarBitmap);
         }
+
+        
     }
 }
