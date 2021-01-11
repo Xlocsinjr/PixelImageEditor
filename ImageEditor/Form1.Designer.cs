@@ -51,6 +51,7 @@
             this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
             this.comboBoxBg = new System.Windows.Forms.ComboBox();
             this.colorDialogBgPlainColour = new System.Windows.Forms.ColorDialog();
+            this.labelBgStars = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -89,32 +90,32 @@
             // toolStripFileNew
             // 
             this.toolStripFileNew.Name = "toolStripFileNew";
-            this.toolStripFileNew.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileNew.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileNew.Text = "New";
             this.toolStripFileNew.Click += new System.EventHandler(this.toolStripFileNew_Click);
             // 
             // toolStripFileOpen
             // 
             this.toolStripFileOpen.Name = "toolStripFileOpen";
-            this.toolStripFileOpen.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileOpen.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileOpen.Text = "Open";
             this.toolStripFileOpen.Click += new System.EventHandler(this.toolStripFileOpen_Click);
             // 
             // toolStripFileSave
             // 
             this.toolStripFileSave.Name = "toolStripFileSave";
-            this.toolStripFileSave.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileSave.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileSave.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripFileExit
             // 
             this.toolStripFileExit.Name = "toolStripFileExit";
-            this.toolStripFileExit.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileExit.Size = new System.Drawing.Size(180, 22);
             this.toolStripFileExit.Text = "Exit";
             this.toolStripFileExit.Click += new System.EventHandler(this.toolStripFileExit_Click);
             // 
@@ -163,7 +164,7 @@
             // groupBox1
             // 
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 197);
+            this.groupBox1.Location = new System.Drawing.Point(0, 213);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(346, 100);
             this.groupBox1.TabIndex = 1;
@@ -172,6 +173,7 @@
             // 
             // groupBoxBg
             // 
+            this.groupBoxBg.AutoSize = true;
             this.groupBoxBg.Controls.Add(this.flowLayoutBgStars);
             this.groupBoxBg.Controls.Add(this.listViewBgChoose);
             this.groupBoxBg.Controls.Add(this.BgTablePlainColour);
@@ -179,7 +181,7 @@
             this.groupBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxBg.Location = new System.Drawing.Point(0, 0);
             this.groupBoxBg.Name = "groupBoxBg";
-            this.groupBoxBg.Size = new System.Drawing.Size(346, 197);
+            this.groupBoxBg.Size = new System.Drawing.Size(346, 213);
             this.groupBoxBg.TabIndex = 0;
             this.groupBoxBg.TabStop = false;
             this.groupBoxBg.Text = "Background";
@@ -189,10 +191,11 @@
             this.flowLayoutBgStars.Controls.Add(this.StarsCheckBox);
             this.flowLayoutBgStars.Controls.Add(this.StarsRegenButton);
             this.flowLayoutBgStars.Controls.Add(this.TrackbarBgStars);
+            this.flowLayoutBgStars.Controls.Add(this.labelBgStars);
             this.flowLayoutBgStars.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutBgStars.Location = new System.Drawing.Point(3, 140);
             this.flowLayoutBgStars.Name = "flowLayoutBgStars";
-            this.flowLayoutBgStars.Size = new System.Drawing.Size(340, 57);
+            this.flowLayoutBgStars.Size = new System.Drawing.Size(340, 70);
             this.flowLayoutBgStars.TabIndex = 3;
             // 
             // StarsCheckBox
@@ -218,10 +221,15 @@
             // 
             // TrackbarBgStars
             // 
+            this.TrackbarBgStars.LargeChange = 1;
             this.TrackbarBgStars.Location = new System.Drawing.Point(140, 3);
+            this.TrackbarBgStars.Maximum = 20;
+            this.TrackbarBgStars.Minimum = 1;
             this.TrackbarBgStars.Name = "TrackbarBgStars";
             this.TrackbarBgStars.Size = new System.Drawing.Size(177, 45);
             this.TrackbarBgStars.TabIndex = 2;
+            this.TrackbarBgStars.Value = 1;
+            this.TrackbarBgStars.ValueChanged += new System.EventHandler(this.TrackbarBgStars_ValueChanged);
             // 
             // listViewBgChoose
             // 
@@ -284,6 +292,15 @@
             this.comboBoxBg.TabIndex = 0;
             this.comboBoxBg.SelectedIndexChanged += new System.EventHandler(this.comboBoxBg_SelectedIndexChanged);
             // 
+            // labelBgStars
+            // 
+            this.labelBgStars.AutoSize = true;
+            this.labelBgStars.Location = new System.Drawing.Point(3, 51);
+            this.labelBgStars.Name = "labelBgStars";
+            this.labelBgStars.Size = new System.Drawing.Size(35, 13);
+            this.labelBgStars.TabIndex = 3;
+            this.labelBgStars.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,6 +317,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -340,6 +358,7 @@
         private System.Windows.Forms.CheckBox StarsCheckBox;
         private System.Windows.Forms.Button StarsRegenButton;
         private System.Windows.Forms.TrackBar TrackbarBgStars;
+        private System.Windows.Forms.Label labelBgStars;
     }
 }
 

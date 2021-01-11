@@ -64,8 +64,9 @@ namespace ImageEditor
             }
 
             ListviewBgChooseInit();
+            UpdateStarDensityLabel();
+
             NewImage();
-            //pictureBox1.Image = Image.FromFile(@"..\..\SourceImages\testImage.png");
 
         }
 
@@ -279,15 +280,19 @@ namespace ImageEditor
 
         void GenerateStars()
         {
-            StarNoiseThreshold = 990;
-            Random rnumber = new Random();
+            // Determine star generation threshold based on trackbar value
+            // 1pt is 0.25%. higher value -> lower threshold -> more stars
+            StarNoiseThreshold = 400 - TrackbarBgStars.Value;
 
+            // Loops through all pixels of new empty bitmap
+            Random rnumber = new Random();
             Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
             for (int y = 0; y < IMG_HEIGHT; y++)
             {
                 for (int x = 0; x < IMG_WIDTH; x++)
                 {
-                    if (rnumber.Next(1000) > StarNoiseThreshold)
+                    // Creates a star (white pixel) if randomly generated number exceeds or equals threshold
+                    if (rnumber.Next(400) >= StarNoiseThreshold)
                     {
                         newStarBitmap.SetPixel(x, y, Color.White);
                     }
@@ -296,6 +301,18 @@ namespace ImageEditor
             UpdateLayer(Layers.Star, newStarBitmap);
         }
 
-        
+        private void UpdateStarDensityLabel()
+        {
+            // Update label for star density
+            double starDensity = TrackbarBgStars.Value * 0.25;
+            labelBgStars.Text = "Star density: " + starDensity.ToString() + "%";
+        }
+
+        private void TrackbarBgStars_ValueChanged(object sender, EventArgs e)
+        {
+            // updates label and regenerate stars
+            UpdateStarDensityLabel();
+            GenerateStars();
+        }
     }
 }
