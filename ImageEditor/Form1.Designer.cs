@@ -31,8 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFileNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripFileOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripFileSave = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -45,13 +43,15 @@
             this.StarsCheckBox = new System.Windows.Forms.CheckBox();
             this.StarsRegenButton = new System.Windows.Forms.Button();
             this.TrackbarBgStars = new System.Windows.Forms.TrackBar();
+            this.labelBgStars = new System.Windows.Forms.Label();
             this.listViewBgChoose = new System.Windows.Forms.ListView();
             this.BgTablePlainColour = new System.Windows.Forms.TableLayoutPanel();
             this.buttonBgPlainColourChoose = new System.Windows.Forms.Button();
             this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
             this.comboBoxBg = new System.Windows.Forms.ComboBox();
             this.colorDialogBgPlainColour = new System.Windows.Forms.ColorDialog();
-            this.labelBgStars = new System.Windows.Forms.Label();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.exportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -79,8 +79,7 @@
             // 
             this.toolStripFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripFileNew,
-            this.toolStripFileOpen,
-            this.toolStripFileSave,
+            this.exportImageToolStripMenuItem,
             this.toolStripSeparator1,
             this.toolStripFileExit});
             this.toolStripFile.Name = "toolStripFile";
@@ -90,32 +89,19 @@
             // toolStripFileNew
             // 
             this.toolStripFileNew.Name = "toolStripFileNew";
-            this.toolStripFileNew.Size = new System.Drawing.Size(180, 22);
+            this.toolStripFileNew.Size = new System.Drawing.Size(103, 22);
             this.toolStripFileNew.Text = "New";
             this.toolStripFileNew.Click += new System.EventHandler(this.toolStripFileNew_Click);
-            // 
-            // toolStripFileOpen
-            // 
-            this.toolStripFileOpen.Name = "toolStripFileOpen";
-            this.toolStripFileOpen.Size = new System.Drawing.Size(180, 22);
-            this.toolStripFileOpen.Text = "Open";
-            this.toolStripFileOpen.Click += new System.EventHandler(this.toolStripFileOpen_Click);
-            // 
-            // toolStripFileSave
-            // 
-            this.toolStripFileSave.Name = "toolStripFileSave";
-            this.toolStripFileSave.Size = new System.Drawing.Size(180, 22);
-            this.toolStripFileSave.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
             // 
             // toolStripFileExit
             // 
             this.toolStripFileExit.Name = "toolStripFileExit";
-            this.toolStripFileExit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripFileExit.Size = new System.Drawing.Size(103, 22);
             this.toolStripFileExit.Text = "Exit";
             this.toolStripFileExit.Click += new System.EventHandler(this.toolStripFileExit_Click);
             // 
@@ -231,6 +217,15 @@
             this.TrackbarBgStars.Value = 1;
             this.TrackbarBgStars.ValueChanged += new System.EventHandler(this.TrackbarBgStars_ValueChanged);
             // 
+            // labelBgStars
+            // 
+            this.labelBgStars.AutoSize = true;
+            this.labelBgStars.Location = new System.Drawing.Point(3, 51);
+            this.labelBgStars.Name = "labelBgStars";
+            this.labelBgStars.Size = new System.Drawing.Size(35, 13);
+            this.labelBgStars.TabIndex = 3;
+            this.labelBgStars.Text = "label1";
+            // 
             // listViewBgChoose
             // 
             this.listViewBgChoose.Dock = System.Windows.Forms.DockStyle.Top;
@@ -292,14 +287,17 @@
             this.comboBoxBg.TabIndex = 0;
             this.comboBoxBg.SelectedIndexChanged += new System.EventHandler(this.comboBoxBg_SelectedIndexChanged);
             // 
-            // labelBgStars
+            // saveFileDialog1
             // 
-            this.labelBgStars.AutoSize = true;
-            this.labelBgStars.Location = new System.Drawing.Point(3, 51);
-            this.labelBgStars.Name = "labelBgStars";
-            this.labelBgStars.Size = new System.Drawing.Size(35, 13);
-            this.labelBgStars.TabIndex = 3;
-            this.labelBgStars.Text = "label1";
+            this.saveFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+            this.saveFileDialog1.Title = "Export image";
+            // 
+            // exportImageToolStripMenuItem
+            // 
+            this.exportImageToolStripMenuItem.Name = "exportImageToolStripMenuItem";
+            this.exportImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportImageToolStripMenuItem.Text = "Export image";
+            this.exportImageToolStripMenuItem.Click += new System.EventHandler(this.exportImageToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -337,8 +335,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripFile;
-        private System.Windows.Forms.ToolStripMenuItem toolStripFileOpen;
-        private System.Windows.Forms.ToolStripMenuItem toolStripFileSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripFileExit;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -359,6 +355,8 @@
         private System.Windows.Forms.Button StarsRegenButton;
         private System.Windows.Forms.TrackBar TrackbarBgStars;
         private System.Windows.Forms.Label labelBgStars;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem exportImageToolStripMenuItem;
     }
 }
 
