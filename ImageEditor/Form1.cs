@@ -64,12 +64,13 @@ namespace ImageEditor
             }
 
             ListviewBgChooseInit();
+            UpdateStarDensityLabel();
+
             NewImage();
-            //pictureBox1.Image = Image.FromFile(@"..\..\SourceImages\testImage.png");
 
         }
 
-        
+        // ======================================= TOOLSTRIP ======================================
 
         private void toolStripFileOpen_Click(object sender, EventArgs e)
         {
@@ -91,9 +92,6 @@ namespace ImageEditor
         {
             NewImage();
         }
-
-
-
 
         private void NewImage()
         {
@@ -119,14 +117,43 @@ namespace ImageEditor
                 graphics.Clear(Color.Black);
             }
 
-            // Update background layer to black
+            // Updates the plain colour preview box and the background layer
+            pictureBoxBgPlainColourPreview.Image = bgBitmap;
             UpdateLayer(Layers.Background, bgBitmap);
-
 
             // Turns off any additional options
             StarsCheckBox.Checked = false;
         }
 
+        private void exportImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = "PixelImage.png";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                CombinedBitmap.Save(saveFileDialog1.FileName);
+            }
+        }
+
+
+
+        // ======================================= BACKGROUND COMBOBOX ======================================
+
+        private void comboBoxBg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BgTablePlainColour.Visible = false;
+            listViewBgChoose.Visible = false;
+
+            if (comboBoxBg.SelectedIndex == 0)
+            {
+                BgTablePlainColour.Visible = true;
+            }
+            else if (comboBoxBg.SelectedIndex == 1) 
+            {
+                listViewBgChoose.Visible = true;
+            }
+        }
+
+        // ======================================= BACKGROUND PLAINCOLOUR ======================================
         private void buttonBgPlainColourChoose_Click(object sender, EventArgs e)
         {
             // Show the color dialog. If the user clicks OK, load the
@@ -147,21 +174,6 @@ namespace ImageEditor
 
                 // Update background layer to new colour
                 UpdateLayer(Layers.Background, bgBitmap);
-            }
-        }
-
-        private void comboBoxBg_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BgTablePlainColour.Visible = false;
-            listViewBgChoose.Visible = false;
-
-            if (comboBoxBg.SelectedIndex == 0)
-            {
-                BgTablePlainColour.Visible = true;
-            }
-            else if (comboBoxBg.SelectedIndex == 1) 
-            {
-                listViewBgChoose.Visible = true;
             }
         }
 
@@ -207,6 +219,68 @@ namespace ImageEditor
             }
 
         }
+
+        // ======================================= BACKGROUND STAR GENERATION ======================================
+
+        private void StarsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // generates white star pixels if checkbox is checked, else clears star layer
+            if (StarsCheckBox.Checked)
+            {
+                GenerateStars();
+            }
+            else
+            {
+                Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+                UpdateLayer(Layers.Star, newStarBitmap);
+            }
+        }
+
+        void GenerateStars()
+        {
+            // Determine star generation threshold based on trackbar value
+            // 1pt is 0.10%. higher value -> lower threshold -> more stars
+            StarNoiseThreshold = 1000 - TrackbarBgStars.Value;
+
+            // Loops through all pixels of new empty bitmap
+            Random rnumber = new Random();
+            Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
+            for (int y = 0; y < IMG_HEIGHT; y++)
+            {
+                for (int x = 0; x < IMG_WIDTH; x++)
+                {
+                    // Creates a star (white pixel) if randomly generated number exceeds or equals threshold
+                    if (rnumber.Next(1000) >= StarNoiseThreshold)
+                    {
+                        newStarBitmap.SetPixel(x, y, Color.White);
+                    }
+                }
+            }
+            UpdateLayer(Layers.Star, newStarBitmap);
+        }
+
+        private void UpdateStarDensityLabel()
+        {
+            // Update label for star density
+            double starDensity = TrackbarBgStars.Value * 0.10;
+            labelBgStars.Text = "Star density: " + starDensity.ToString() + "%";
+        }
+
+        private void TrackbarBgStars_ValueChanged(object sender, EventArgs e)
+        {
+            // updates label and regenerate stars
+            UpdateStarDensityLabel();
+            GenerateStars();
+        }
+
+
+
+
+
+
+
+
+
 
 
         private void ShowCombinedLayers()
@@ -261,39 +335,6 @@ namespace ImageEditor
 
             // Updates the image shown in the picture box
             ShowCombinedLayers();
-        }
-
-        private void StarsCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            // generates white star pixels if checkbox is checked, else clears star layer
-            if (StarsCheckBox.Checked)
-            {
-                GenerateStars();
-            }
-            else
-            {
-                Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
-                UpdateLayer(Layers.Star, newStarBitmap);
-            }
-        }
-
-        void GenerateStars()
-        {
-            StarNoiseThreshold = 990;
-            Random rnumber = new Random();
-
-            Bitmap newStarBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
-            for (int y = 0; y < IMG_HEIGHT; y++)
-            {
-                for (int x = 0; x < IMG_WIDTH; x++)
-                {
-                    if (rnumber.Next(1000) > StarNoiseThreshold)
-                    {
-                        newStarBitmap.SetPixel(x, y, Color.White);
-                    }
-                }
-            }
-            UpdateLayer(Layers.Star, newStarBitmap);
         }
 
         
