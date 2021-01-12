@@ -66,6 +66,8 @@ namespace ImageEditor
             ListviewBgChooseInit();
             UpdateStarDensityLabel();
 
+            ForeLayer ForeGround = new ForeLayer(splitContainer1.Panel2);
+
             NewImage();
 
         }
@@ -99,7 +101,6 @@ namespace ImageEditor
             LayersList = new List<Bitmap> { };
             foreach (Layers l in LayersIndeces)
             {
-                // create an image of the desired size
                 var newBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
                 LayersList.Add(newBitmap);
             }
@@ -270,7 +271,10 @@ namespace ImageEditor
         {
             // updates label and regenerate stars
             UpdateStarDensityLabel();
-            GenerateStars();
+            if (StarsCheckBox.Checked)
+            {
+                GenerateStars();
+            }
         }
 
 

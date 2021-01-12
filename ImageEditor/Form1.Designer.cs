@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFileNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -51,13 +52,14 @@
             this.comboBoxBg = new System.Windows.Forms.ComboBox();
             this.colorDialogBgPlainColour = new System.Windows.Forms.ColorDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.exportImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.groupBoxBg.SuspendLayout();
             this.flowLayoutBgStars.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TrackbarBgStars)).BeginInit();
@@ -89,19 +91,26 @@
             // toolStripFileNew
             // 
             this.toolStripFileNew.Name = "toolStripFileNew";
-            this.toolStripFileNew.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileNew.Size = new System.Drawing.Size(144, 22);
             this.toolStripFileNew.Text = "New";
             this.toolStripFileNew.Click += new System.EventHandler(this.toolStripFileNew_Click);
+            // 
+            // exportImageToolStripMenuItem
+            // 
+            this.exportImageToolStripMenuItem.Name = "exportImageToolStripMenuItem";
+            this.exportImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exportImageToolStripMenuItem.Text = "Export image";
+            this.exportImageToolStripMenuItem.Click += new System.EventHandler(this.exportImageToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // toolStripFileExit
             // 
             this.toolStripFileExit.Name = "toolStripFileExit";
-            this.toolStripFileExit.Size = new System.Drawing.Size(103, 22);
+            this.toolStripFileExit.Size = new System.Drawing.Size(144, 22);
             this.toolStripFileExit.Text = "Exit";
             this.toolStripFileExit.Click += new System.EventHandler(this.toolStripFileExit_Click);
             // 
@@ -149,6 +158,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 213);
             this.groupBox1.Name = "groupBox1";
@@ -275,6 +285,7 @@
             // 
             // comboBoxBg
             // 
+            this.comboBoxBg.BackColor = System.Drawing.SystemColors.Window;
             this.comboBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
             this.comboBoxBg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBg.FormattingEnabled = true;
@@ -292,12 +303,14 @@
             this.saveFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png";
             this.saveFileDialog1.Title = "Export image";
             // 
-            // exportImageToolStripMenuItem
+            // flowLayoutPanel1
             // 
-            this.exportImageToolStripMenuItem.Name = "exportImageToolStripMenuItem";
-            this.exportImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exportImageToolStripMenuItem.Text = "Export image";
-            this.exportImageToolStripMenuItem.Click += new System.EventHandler(this.exportImageToolStripMenuItem_Click);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(340, 81);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -319,6 +332,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.groupBoxBg.ResumeLayout(false);
             this.flowLayoutBgStars.ResumeLayout(false);
             this.flowLayoutBgStars.PerformLayout();
@@ -357,6 +371,7 @@
         private System.Windows.Forms.Label labelBgStars;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem exportImageToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
