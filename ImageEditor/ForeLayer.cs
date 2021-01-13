@@ -8,8 +8,9 @@ using System.Drawing;
 
 namespace ImageEditor
 {
-    class ForeLayer
+    class ForeLayer : LayerImage
     {
+        List<Image> LayersImageList;
         GroupBox GroupBox;
         FlowLayoutPanel FlowPanel;
         ComboBox ComboBox;
@@ -18,6 +19,7 @@ namespace ImageEditor
 
         PictureBox PlainColourPreview;
         Button PlainColourButton;
+        ColorDialog PlainColourDialog;
 
         public ForeLayer(SplitterPanel parentPanel)
         {
@@ -30,7 +32,8 @@ namespace ImageEditor
             this.ComboBox.Dock = DockStyle.Top;
             this.ComboBox.Items.Add("Plain colour");
             this.ComboBox.Items.Add("Presets");
-            this.ComboBox.SelectedIndexChanged += new EventHandler(this.comboBox_SelectedIndexChanged);
+            this.ComboBox.Items.Add("Clear");
+            this.ComboBox.SelectedIndexChanged += new EventHandler(this.ComboBox_SelectedIndexChanged);
 
             this.TablePlainColour = new TableLayoutPanel();
             this.TablePlainColour.Dock = DockStyle.Top;
@@ -38,7 +41,8 @@ namespace ImageEditor
             this.TablePlainColour.AutoSize = true;
 
             this.PlainColourButton = new Button();
-            // CONTINUE HERE
+            this.PlainColourButton.Text = "Choose colour";
+            this.PlainColourButton.Click += new EventHandler(this.PlainColourButtonClick);
 
             this.PlainColourPreview = new PictureBox();
             this.PlainColourPreview.Size = new Size(29, 29);
@@ -57,12 +61,12 @@ namespace ImageEditor
             this.GroupBox.Controls.Add(this.ListViewPresets);
 
             this.ComboBox.SelectedIndex = 1;
-            this.comboBoxIndexCheck();
+            this.ComboBoxIndexCheck();
         }
 
 
 
-        private void comboBoxIndexCheck()
+        private void ComboBoxIndexCheck()
         {
             this.TablePlainColour.Visible = false;
             this.ListViewPresets.Visible = false;
@@ -77,10 +81,32 @@ namespace ImageEditor
             }
         }
 
-        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxIndexCheck();
+            ComboBoxIndexCheck();
         }
 
+        private void PlainColourButtonClick(object sender, EventArgs e)
+        {
+            // Show the color dialog. If the user clicks OK, load the
+            // picture that the user chose.
+            if (PlainColourDialog.ShowDialog() == DialogResult.OK)
+            {
+                // create an image of the desired size
+                var bgBitmap = new Bitmap(Form1.IMG_WIDTH, Form1.IMG_HEIGHT);
+
+                using (var graphics = Graphics.FromImage(bgBitmap))
+                {
+                    // set background color
+                    graphics.Clear(PlainColourDialog.Color);
+                }
+
+                // Updates the plain colour preview box
+                PlainColourPreview.Image = bgBitmap;
+
+                // Update layer image
+                this.LayerBitmap = bgBitmap;
+            }
+        }
     }
 }

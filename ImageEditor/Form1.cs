@@ -25,7 +25,7 @@ namespace ImageEditor
         Bitmap CombinedBitmap;
 
         // Declare layer images list
-        private List<Bitmap> LayersList; 
+        public List<Bitmap> LayersList; 
 
         // Declare list of the enums so the indeces can later be retrieved
         List<Layers> LayersIndeces;
@@ -67,6 +67,7 @@ namespace ImageEditor
             UpdateStarDensityLabel();
 
             ForeLayer ForeGround = new ForeLayer(splitContainer1.Panel2);
+            ForeLayer ForeGround2 = new ForeLayer(splitContainer1.Panel2);
 
             NewImage();
 
