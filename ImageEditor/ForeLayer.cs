@@ -88,25 +88,7 @@ namespace ImageEditor
 
         private void PlainColourButtonClick(object sender, EventArgs e)
         {
-            // Show the color dialog. If the user clicks OK, load the
-            // picture that the user chose.
-            if (PlainColourDialog.ShowDialog() == DialogResult.OK)
-            {
-                // create an image of the desired size
-                var bgBitmap = new Bitmap(Form1.IMG_WIDTH, Form1.IMG_HEIGHT);
-
-                using (var graphics = Graphics.FromImage(bgBitmap))
-                {
-                    // set background color
-                    graphics.Clear(PlainColourDialog.Color);
-                }
-
-                // Updates the plain colour preview box
-                PlainColourPreview.Image = bgBitmap;
-
-                // Update layer image
-                this.LayerBitmap = bgBitmap;
-            }
+            PlainColourChoose(targetPictureBox, );
         }
     }
 }
