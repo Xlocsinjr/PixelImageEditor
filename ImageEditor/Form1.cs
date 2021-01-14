@@ -44,7 +44,7 @@ namespace ImageEditor
         {
             InitializeComponent();
 
-            pictureBox1.Image = Properties.Resources.BgPresetSky;
+            ForeLayer.InitialisePresets();
             
             // Open on Plain colour on the combobox for the background layers
             comboBoxBg.SelectedIndex = 0;
@@ -67,9 +67,13 @@ namespace ImageEditor
             UpdateStarDensityLabel();
 
             CombinedLayers CombinedLayers = new CombinedLayers(pictureBox1);
-            LayerImage ForeGround = new LayerImage(50, splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
-            LayerImage ForeGround2 = new LayerImage(80, splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
+            ForeLayer BackGround = new ForeLayer(0, "Background", splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
 
+            ForeLayer ForeGround = new ForeLayer(90, "Foreground layer 1", splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
+            ForeLayer ForeGround2 = new ForeLayer(120, "Foreground layer 2",splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
+
+            // Adds the layers to the list in CombinedLayers, MUST ADD IN ORDER
+            CombinedLayers.AddLayer(BackGround);
             CombinedLayers.AddLayer(ForeGround);
             CombinedLayers.AddLayer(ForeGround2);
 
