@@ -20,7 +20,7 @@ namespace ImageEditor
         int StarNoiseThreshold;
 
         ImageList BgPresetImgList = new ImageList(); // for the listview thumbnails
-        List<Image> BgPresetImgs = new List<Image> { }; // for the preset imgs
+        public static List<Image> BgPresetImgs = new List<Image> { }; // for the preset imgs
 
         Bitmap CombinedBitmap;
 
@@ -66,8 +66,16 @@ namespace ImageEditor
             ListviewBgChooseInit();
             UpdateStarDensityLabel();
 
-            ForeLayer ForeGround = new ForeLayer(splitContainer1.Panel2);
-            ForeLayer ForeGround2 = new ForeLayer(splitContainer1.Panel2);
+            CombinedLayers CombinedLayers = new CombinedLayers(pictureBox1);
+            LayerImage ForeGround = new LayerImage(50, splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
+            LayerImage ForeGround2 = new LayerImage(80, splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
+
+            CombinedLayers.AddLayer(ForeGround);
+            CombinedLayers.AddLayer(ForeGround2);
+
+            CombinedLayers.ShowCombinedLayers();
+
+            Console.WriteLine(BgTablePlainColour.ColumnStyles);
 
             NewImage();
 
@@ -158,9 +166,10 @@ namespace ImageEditor
         // ======================================= BACKGROUND PLAINCOLOUR ======================================
         private void buttonBgPlainColourChoose_Click(object sender, EventArgs e)
         {
+            // THIS ONE SHOULD BE REMOVED AT SOME POINT
             // Show the color dialog. If the user clicks OK, load the
             // picture that the user chose.
-            if (colorDialogBgPlainColour.ShowDialog() == DialogResult.OK)
+            if (colorDialogPlainColour.ShowDialog() == DialogResult.OK)
             {
                 // create an image of the desired size
                 var bgBitmap = new Bitmap(IMG_WIDTH, IMG_HEIGHT);
@@ -168,7 +177,7 @@ namespace ImageEditor
                 using (var graphics = Graphics.FromImage(bgBitmap))
                 {
                     // set background color
-                    graphics.Clear(colorDialogBgPlainColour.Color);
+                    graphics.Clear(colorDialogPlainColour.Color);
                 }
 
                 // Updates the plain colour preview box
@@ -178,6 +187,8 @@ namespace ImageEditor
                 UpdateLayer(Layers.Background, bgBitmap);
             }
         }
+
+        
 
         // ======================================= BACKGROUND PRESETS ======================================
         private void ListviewBgChooseInit()

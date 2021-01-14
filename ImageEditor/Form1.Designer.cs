@@ -39,6 +39,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBoxBg = new System.Windows.Forms.GroupBox();
             this.flowLayoutBgStars = new System.Windows.Forms.FlowLayoutPanel();
             this.StarsCheckBox = new System.Windows.Forms.CheckBox();
@@ -50,9 +51,8 @@
             this.buttonBgPlainColourChoose = new System.Windows.Forms.Button();
             this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
             this.comboBoxBg = new System.Windows.Forms.ComboBox();
-            this.colorDialogBgPlainColour = new System.Windows.Forms.ColorDialog();
+            this.colorDialogPlainColour = new System.Windows.Forms.ColorDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -166,6 +166,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(340, 81);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // groupBoxBg
             // 
@@ -303,15 +312,6 @@
             this.saveFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png";
             this.saveFileDialog1.Title = "Export image";
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(340, 81);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,7 +354,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem toolStripFileNew;
         private System.Windows.Forms.GroupBox groupBoxBg;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -363,7 +362,6 @@
         private System.Windows.Forms.ListView listViewBgChoose;
         private System.Windows.Forms.Button buttonBgPlainColourChoose;
         private System.Windows.Forms.PictureBox pictureBoxBgPlainColourPreview;
-        private System.Windows.Forms.ColorDialog colorDialogBgPlainColour;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutBgStars;
         private System.Windows.Forms.CheckBox StarsCheckBox;
         private System.Windows.Forms.Button StarsRegenButton;
@@ -372,6 +370,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem exportImageToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ColorDialog colorDialogPlainColour;
+        public System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

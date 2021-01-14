@@ -8,38 +8,20 @@ using System.Windows.Forms;
 
 namespace ImageEditor
 {
-    class CombinedLayers
+    public class CombinedLayers
     {
         Bitmap CombinedBitmap;
-        List<Bitmap> LayersList;
-        List<Layers> LayersIndeces; // Declare list of the enums so the indeces can later be retrieved
-        List<LayerImage> LayerImageList; // List of Layer objects
+        PictureBox TargetPictureBox;
         int zoomFactor;
 
-        // Declare enum of layers. 
-        // To declare additional layers, simply add a new entry in the enum.
-        public enum Layers
+        List<LayerImage> LayerImageList;  // List of Layer objects
+        
+
+        public CombinedLayers(PictureBox targetPictureBox)
         {
-            Background,
-            Star,
-        }
+            this.TargetPictureBox = targetPictureBox;
 
-        public CombinedLayers()
-        {
-
-            this.LayersList = new List<Bitmap> { };
-            this.LayersIndeces = new List<Layers> { };
-
-            // Initialises the LayersIndeces to contain the enums so the indices can later be retrieved
-            // Also initialises the layerslist with empty transparent images
-            foreach (Layers layer in (Layers[])Enum.GetValues(typeof(Layers)))
-            {
-                LayersIndeces.Add(layer);
-
-                var newBitmap = new Bitmap(Form1.IMG_WIDTH, Form1.IMG_HEIGHT);
-                newBitmap.MakeTransparent(Color.White);
-                LayersList.Add(newBitmap);
-            }
+            this.LayerImageList = new List<LayerImage> { };
 
 
 
@@ -47,7 +29,7 @@ namespace ImageEditor
 
 
 
-        private void ShowCombinedLayers(PictureBox pictureBox)
+        public void ShowCombinedLayers()
         {
             // http://csharphelper.com/blog/2016/11/overlay-images-in-c/
             // Combines layers into a single image;
@@ -58,10 +40,11 @@ namespace ImageEditor
             // Overlays the images of each layer
             using (Graphics gr = Graphics.FromImage(CombinedBitmap))
             {
-                var location = new Point(0, 0);
-                foreach (Image layer in LayersList)
+                
+                foreach (LayerImage layer in LayerImageList)
                 {
-                    gr.DrawImage(layer, location);
+                    var location = new Point(0, Convert.ToInt32(layer.LayerHeight));
+                    gr.DrawImage(layer.LayerBitmap, location);
                 }
             }
 
@@ -85,20 +68,14 @@ namespace ImageEditor
                     GraphicsUnit.Pixel);
 
                 // Display the zoomed result.
-                pictureBox.Image = zoomedCombinedBitmap;
+                this.TargetPictureBox.Image = zoomedCombinedBitmap;
             }
         }
 
-        void UpdateLayer(Layers layer, Bitmap bitmap)
+        public void AddLayer(LayerImage layer)
         {
-            // retrieves the index of the Layers.Background enum in LayersIndeces
-            int bgIndex = LayersIndeces.IndexOf(layer);
-
-            // Replaces the image in the layersList to the new bitmap
-            LayersList[bgIndex] = bitmap;
-
-            // Updates the image shown in the picture box
-            //ShowCombinedLayers();
+            this.LayerImageList.Add(layer);
         }
+
     }
 }
