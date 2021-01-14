@@ -10,7 +10,7 @@ namespace ImageEditor
 {
     public class CombinedLayers
     {
-        Bitmap CombinedBitmap;
+        public Bitmap CombinedBitmap;
         PictureBox TargetPictureBox;
         int zoomFactor;
 
@@ -75,6 +75,14 @@ namespace ImageEditor
         public void AddLayer(LayerImage layer)
         {
             this.LayerImageList.Add(layer);
+        }
+
+        public void ClearLayers()
+        {
+            foreach (LayerImage layer in LayerImageList)
+            {
+                layer.ClearLayer();
+            }
         }
 
     }

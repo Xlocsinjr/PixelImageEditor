@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ImageEditor
 {
-    public class LayerImage
+    public abstract class LayerImage
     {
         public Bitmap LayerBitmap;
         public int LayerHeight;
@@ -27,12 +27,14 @@ namespace ImageEditor
 
 
 
-        protected void ClearLayer()
+        public void ClearLayer()
         {
             this.LayerBitmap = new Bitmap(Form1.IMG_WIDTH, Form1.IMG_HEIGHT);
             this.TargetCombinedLayers.ShowCombinedLayers();
+            this.ClearOptions();
         }
 
+        public abstract void ClearOptions();
 
 
 

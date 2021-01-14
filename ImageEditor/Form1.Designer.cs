@@ -38,33 +38,13 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBoxBg = new System.Windows.Forms.GroupBox();
-            this.flowLayoutBgStars = new System.Windows.Forms.FlowLayoutPanel();
-            this.StarsCheckBox = new System.Windows.Forms.CheckBox();
-            this.StarsRegenButton = new System.Windows.Forms.Button();
-            this.TrackbarBgStars = new System.Windows.Forms.TrackBar();
-            this.labelBgStars = new System.Windows.Forms.Label();
-            this.listViewBgChoose = new System.Windows.Forms.ListView();
-            this.BgTablePlainColour = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonBgPlainColourChoose = new System.Windows.Forms.Button();
-            this.pictureBoxBgPlainColourPreview = new System.Windows.Forms.PictureBox();
-            this.comboBoxBg = new System.Windows.Forms.ComboBox();
             this.colorDialogPlainColour = new System.Windows.Forms.ColorDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBoxBg.SuspendLayout();
-            this.flowLayoutBgStars.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TrackbarBgStars)).BeginInit();
-            this.BgTablePlainColour.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBgPlainColourPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -141,8 +121,6 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.groupBoxBg);
             this.splitContainer1.Size = new System.Drawing.Size(986, 482);
             this.splitContainer1.SplitterDistance = 636;
             this.splitContainer1.TabIndex = 2;
@@ -156,157 +134,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 213);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(346, 100);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(340, 81);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // groupBoxBg
-            // 
-            this.groupBoxBg.AutoSize = true;
-            this.groupBoxBg.Controls.Add(this.flowLayoutBgStars);
-            this.groupBoxBg.Controls.Add(this.listViewBgChoose);
-            this.groupBoxBg.Controls.Add(this.BgTablePlainColour);
-            this.groupBoxBg.Controls.Add(this.comboBoxBg);
-            this.groupBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBoxBg.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxBg.Name = "groupBoxBg";
-            this.groupBoxBg.Size = new System.Drawing.Size(346, 213);
-            this.groupBoxBg.TabIndex = 0;
-            this.groupBoxBg.TabStop = false;
-            this.groupBoxBg.Text = "Background";
-            // 
-            // flowLayoutBgStars
-            // 
-            this.flowLayoutBgStars.Controls.Add(this.StarsCheckBox);
-            this.flowLayoutBgStars.Controls.Add(this.StarsRegenButton);
-            this.flowLayoutBgStars.Controls.Add(this.TrackbarBgStars);
-            this.flowLayoutBgStars.Controls.Add(this.labelBgStars);
-            this.flowLayoutBgStars.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutBgStars.Location = new System.Drawing.Point(3, 140);
-            this.flowLayoutBgStars.Name = "flowLayoutBgStars";
-            this.flowLayoutBgStars.Size = new System.Drawing.Size(340, 70);
-            this.flowLayoutBgStars.TabIndex = 3;
-            // 
-            // StarsCheckBox
-            // 
-            this.StarsCheckBox.AutoSize = true;
-            this.StarsCheckBox.Location = new System.Drawing.Point(3, 3);
-            this.StarsCheckBox.Name = "StarsCheckBox";
-            this.StarsCheckBox.Size = new System.Drawing.Size(50, 17);
-            this.StarsCheckBox.TabIndex = 0;
-            this.StarsCheckBox.Text = "Stars";
-            this.StarsCheckBox.UseVisualStyleBackColor = true;
-            this.StarsCheckBox.CheckedChanged += new System.EventHandler(this.StarsCheckBox_CheckedChanged);
-            // 
-            // StarsRegenButton
-            // 
-            this.StarsRegenButton.Location = new System.Drawing.Point(59, 3);
-            this.StarsRegenButton.Name = "StarsRegenButton";
-            this.StarsRegenButton.Size = new System.Drawing.Size(75, 23);
-            this.StarsRegenButton.TabIndex = 1;
-            this.StarsRegenButton.Text = "Regenerate";
-            this.StarsRegenButton.UseVisualStyleBackColor = true;
-            this.StarsRegenButton.Click += new System.EventHandler(this.StarsCheckBox_CheckedChanged);
-            // 
-            // TrackbarBgStars
-            // 
-            this.TrackbarBgStars.LargeChange = 1;
-            this.TrackbarBgStars.Location = new System.Drawing.Point(140, 3);
-            this.TrackbarBgStars.Maximum = 20;
-            this.TrackbarBgStars.Minimum = 1;
-            this.TrackbarBgStars.Name = "TrackbarBgStars";
-            this.TrackbarBgStars.Size = new System.Drawing.Size(177, 45);
-            this.TrackbarBgStars.TabIndex = 2;
-            this.TrackbarBgStars.Value = 1;
-            this.TrackbarBgStars.ValueChanged += new System.EventHandler(this.TrackbarBgStars_ValueChanged);
-            // 
-            // labelBgStars
-            // 
-            this.labelBgStars.AutoSize = true;
-            this.labelBgStars.Location = new System.Drawing.Point(3, 51);
-            this.labelBgStars.Name = "labelBgStars";
-            this.labelBgStars.Size = new System.Drawing.Size(35, 13);
-            this.labelBgStars.TabIndex = 3;
-            this.labelBgStars.Text = "label1";
-            // 
-            // listViewBgChoose
-            // 
-            this.listViewBgChoose.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listViewBgChoose.HideSelection = false;
-            this.listViewBgChoose.Location = new System.Drawing.Point(3, 72);
-            this.listViewBgChoose.Name = "listViewBgChoose";
-            this.listViewBgChoose.Size = new System.Drawing.Size(340, 68);
-            this.listViewBgChoose.TabIndex = 2;
-            this.listViewBgChoose.UseCompatibleStateImageBehavior = false;
-            this.listViewBgChoose.View = System.Windows.Forms.View.Tile;
-            this.listViewBgChoose.SelectedIndexChanged += new System.EventHandler(this.listViewBgChoose_SelectedIndexChanged);
-            // 
-            // BgTablePlainColour
-            // 
-            this.BgTablePlainColour.ColumnCount = 2;
-            this.BgTablePlainColour.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BgTablePlainColour.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BgTablePlainColour.Controls.Add(this.buttonBgPlainColourChoose, 0, 0);
-            this.BgTablePlainColour.Controls.Add(this.pictureBoxBgPlainColourPreview, 1, 0);
-            this.BgTablePlainColour.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BgTablePlainColour.Location = new System.Drawing.Point(3, 37);
-            this.BgTablePlainColour.Name = "BgTablePlainColour";
-            this.BgTablePlainColour.RowCount = 1;
-            this.BgTablePlainColour.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.61728F));
-            this.BgTablePlainColour.Size = new System.Drawing.Size(340, 35);
-            this.BgTablePlainColour.TabIndex = 1;
-            // 
-            // buttonBgPlainColourChoose
-            // 
-            this.buttonBgPlainColourChoose.AutoSize = true;
-            this.buttonBgPlainColourChoose.Location = new System.Drawing.Point(3, 3);
-            this.buttonBgPlainColourChoose.Name = "buttonBgPlainColourChoose";
-            this.buttonBgPlainColourChoose.Size = new System.Drawing.Size(85, 23);
-            this.buttonBgPlainColourChoose.TabIndex = 0;
-            this.buttonBgPlainColourChoose.Text = "Choose colour";
-            this.buttonBgPlainColourChoose.UseVisualStyleBackColor = true;
-            this.buttonBgPlainColourChoose.Click += new System.EventHandler(this.buttonBgPlainColourChoose_Click);
-            // 
-            // pictureBoxBgPlainColourPreview
-            // 
-            this.pictureBoxBgPlainColourPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBoxBgPlainColourPreview.Location = new System.Drawing.Point(173, 3);
-            this.pictureBoxBgPlainColourPreview.Name = "pictureBoxBgPlainColourPreview";
-            this.pictureBoxBgPlainColourPreview.Size = new System.Drawing.Size(29, 29);
-            this.pictureBoxBgPlainColourPreview.TabIndex = 1;
-            this.pictureBoxBgPlainColourPreview.TabStop = false;
-            // 
-            // comboBoxBg
-            // 
-            this.comboBoxBg.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBoxBg.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBoxBg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxBg.FormattingEnabled = true;
-            this.comboBoxBg.Items.AddRange(new object[] {
-            "Plain Colour",
-            "Background images"});
-            this.comboBoxBg.Location = new System.Drawing.Point(3, 16);
-            this.comboBoxBg.Name = "comboBoxBg";
-            this.comboBoxBg.Size = new System.Drawing.Size(340, 21);
-            this.comboBoxBg.TabIndex = 0;
-            this.comboBoxBg.SelectedIndexChanged += new System.EventHandler(this.comboBoxBg_SelectedIndexChanged);
             // 
             // saveFileDialog1
             // 
@@ -328,19 +155,9 @@
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBoxBg.ResumeLayout(false);
-            this.flowLayoutBgStars.ResumeLayout(false);
-            this.flowLayoutBgStars.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TrackbarBgStars)).EndInit();
-            this.BgTablePlainColour.ResumeLayout(false);
-            this.BgTablePlainColour.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBgPlainColourPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,21 +173,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripMenuItem toolStripFileNew;
-        private System.Windows.Forms.GroupBox groupBoxBg;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TableLayoutPanel BgTablePlainColour;
-        private System.Windows.Forms.ComboBox comboBoxBg;
-        private System.Windows.Forms.ListView listViewBgChoose;
-        private System.Windows.Forms.Button buttonBgPlainColourChoose;
-        private System.Windows.Forms.PictureBox pictureBoxBgPlainColourPreview;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutBgStars;
-        private System.Windows.Forms.CheckBox StarsCheckBox;
-        private System.Windows.Forms.Button StarsRegenButton;
-        private System.Windows.Forms.TrackBar TrackbarBgStars;
-        private System.Windows.Forms.Label labelBgStars;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem exportImageToolStripMenuItem;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ColorDialog colorDialogPlainColour;
         public System.Windows.Forms.PictureBox pictureBox1;
     }

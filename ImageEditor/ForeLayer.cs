@@ -14,7 +14,8 @@ namespace ImageEditor
         public static List<Image> PresetImgs;
         public static ImageList PresetImgList;
 
-        protected GroupBox GroupBox;
+        public GroupBox GroupBox;           // public to allow other controls to be added to the groupbox
+        public TableLayoutPanel layoutTable;
         protected ComboBox ComboBox;
         protected TableLayoutPanel TablePlainColour;
         protected ListView ListViewPresets;
@@ -31,8 +32,7 @@ namespace ImageEditor
             // Initialisations
             this.InitialiseLayerControls(groupBoxText, parentPanel);
             this.InitialiseListView();
-            this.ComboBox.SelectedIndex = 2;
-            this.ComboBoxIndexCheck();
+            this.ClearOptions();
         }
 
 
@@ -43,6 +43,7 @@ namespace ImageEditor
             this.GroupBox.Text = groupBoxText;
             this.GroupBox.Dock = DockStyle.Top;
             this.GroupBox.AutoSize = true;
+            this.GroupBox.Padding = new Padding(0, 0, 0, 20);
 
             this.ComboBox = new ComboBox();
             this.ComboBox.Dock = DockStyle.Top;
@@ -200,6 +201,15 @@ namespace ImageEditor
 
 
             }
+        }
+
+        // ======================================= CLEAR OPTIONS ======================================
+        public override void ClearOptions()
+        {
+            this.ComboBox.SelectedIndex = 0;
+            this.ComboBoxIndexCheck();
+
+            this.PlainColourPreview.Image = new Bitmap(1, 1);
         }
     }
 }
