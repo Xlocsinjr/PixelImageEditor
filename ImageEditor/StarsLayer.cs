@@ -18,8 +18,7 @@ namespace ImageEditor
         TrackBar StarDensityTrackbar;
         Label StarDensityLabel;
 
-        public StarsLayer(int layerHeight, GroupBox parentGroupbox, CombinedLayers targetCombinedLayers) 
-            : base(layerHeight, targetCombinedLayers)
+        public StarsLayer(int layerHeight, GroupBox parentGroupbox) : base(layerHeight)
         {
             // This class' controls have to be added to an other groupbox
             InitialiseStarControls(parentGroupbox);

@@ -8,3 +8,13 @@ D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Deb
 D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
 D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
 D:\YCNtraineeship_nogit\VisualStudioSource\repos\ImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.csprojAssemblyReference.cache
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.Form1.resources
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.Properties.Resources.resources
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.GenerateResource.cache
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.csproj.CoreCompileInputs.cache
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.exe
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\obj\Debug\ImageEditor.pdb
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\bin\Debug\ImageEditor.exe.config
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\bin\Debug\ImageEditor.exe
+C:\Users\Xlocs\OneDrive\Documents\CodeRepos\PixelImageEditor\PixelImageEditor\ImageEditor\bin\Debug\ImageEditor.pdb

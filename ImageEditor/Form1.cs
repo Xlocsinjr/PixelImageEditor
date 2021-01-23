@@ -25,15 +25,16 @@ namespace ImageEditor
             InitializeComponent();
 
             ForeLayer.InitialisePresets();
+            ForeLayer.PlainColourDialog = colorDialogPlainColour;
 
-            CombinedLayers CombinedLayers = new CombinedLayers(pictureBox1);
+            CombinedLayers CombinedLayers = new CombinedLayers(pictureBox1, splitContainer1.Panel2);
             this.activeCombinedLayers = CombinedLayers;
-            ForeLayer BackGround = new ForeLayer(0, "Background layers", splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
-            StarsLayer StarsLayer = new StarsLayer(0, BackGround.GroupBox, CombinedLayers);
-            ForeLayer ForeGround = new ForeLayer(100, "Foreground layer 1", splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
-            ForeLayer ForeGround2 = new ForeLayer(120, "Foreground layer 2",splitContainer1.Panel2, CombinedLayers, colorDialogPlainColour);
+            ForeLayer BackGround = new ForeLayer(0, "Background layers");
+            StarsLayer StarsLayer = new StarsLayer(0, BackGround.GroupBox);
+            ForeLayer ForeGround = new ForeLayer(80, "Foreground layer 1");
+            ForeLayer ForeGround2 = new ForeLayer(100, "Foreground layer 2");
 
-            // Adds the layers to the list in CombinedLayers, MUST ADD IN ORDER
+            // Adds the layers to the list in CombinedLayers
             CombinedLayers.AddLayer(BackGround);
             CombinedLayers.AddLayer(StarsLayer);
             CombinedLayers.AddLayer(ForeGround);
@@ -42,7 +43,7 @@ namespace ImageEditor
             CombinedLayers.ShowCombinedLayers();
 
 
-            NewImage();
+            //NewImage();
 
         }
 
@@ -71,11 +72,8 @@ namespace ImageEditor
 
         private void NewImage()
         {
-            // resets all layers to blank
+            // resets all layers to blank of the active CombinedLayers
             this.activeCombinedLayers.ClearLayers();
-
-            // Turns off any additional options
-            //StarsCheckBox.Checked = false;
         }
 
         private void exportImageToolStripMenuItem_Click(object sender, EventArgs e)
