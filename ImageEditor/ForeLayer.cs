@@ -8,8 +8,10 @@ using System.Drawing;
 
 namespace ImageEditor
 {
+    // This class defines the usual layer with options for plain colour and presets.
     public class ForeLayer : LayerImage
     {
+        // static fields that all instances need to access
         public static ColorDialog PlainColourDialog;
         public static List<Image> PresetImgs;
         public static ImageList PresetImgList;
@@ -22,23 +24,20 @@ namespace ImageEditor
         protected PictureBox PlainColourPreview;
         protected Button PlainColourButton;
 
-        public ForeLayer(int layerHeight, string groupBoxText, SplitterPanel parentPanel, 
-            CombinedLayers targetCombinedLayers, ColorDialog colorDialog) : 
-            base(layerHeight, targetCombinedLayers)
+        // CONSTRUCTOR sets to which CombinedLayers this layer belongs to.
+        public ForeLayer(int layerHeight, string groupBoxText) : 
+            base(layerHeight)
         {
-
-            PlainColourDialog = colorDialog;
-
             // Initialisations
-            this.InitialiseLayerControls(groupBoxText, parentPanel);
+            this.InitialiseLayerControls(groupBoxText);
             this.InitialiseListView();
             this.ClearOptions();
         }
 
-
-        private void InitialiseLayerControls(string groupBoxText, SplitterPanel parentPanel)
+        // Creates all controls in a groupbox within the targetpanel of this
+        // layer's CombinedLayers.
+        private void InitialiseLayerControls(string groupBoxText)
         {
-            // Creates all controls in a groupbox within the chosen parent panel
             this.GroupBox = new GroupBox();
             this.GroupBox.Text = groupBoxText;
             this.GroupBox.Dock = DockStyle.Top;
@@ -73,8 +72,8 @@ namespace ImageEditor
             this.ListViewPresets.AutoSize = true;
             this.ListViewPresets.SelectedIndexChanged += new EventHandler(this.ListViewPresets_SelectedIndexChanged);
 
-            // Adds the groupgbox to the parentpanel and all the created controls to that groupbox
-            parentPanel.Controls.Add(GroupBox);
+            // Adds the groupgbox to the CombinedLayers' TargetControlsPanel and all the created controls to that groupbox
+            this.TargetCombinedLayers.TargetControlsPanel.Controls.Add(GroupBox);
 
             this.GroupBox.Controls.Add(this.TablePlainColour);
             this.TablePlainColour.Controls.Add(this.PlainColourButton);
@@ -88,6 +87,7 @@ namespace ImageEditor
 
 
         // =========================== COMBO BOX ===================================
+        // Sets which controls are visible by which element is chosen in the combobox
         protected void ComboBoxIndexCheck()
         {
             this.TablePlainColour.Visible = false;
@@ -108,6 +108,7 @@ namespace ImageEditor
             
         }
 
+        // Handles the selectedIndexChanged event of the combobox
         protected void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBoxIndexCheck();
@@ -117,30 +118,28 @@ namespace ImageEditor
 
 
         // =========================== PLAIN COLOUR CHOOSE ===================================
+        // Handles the button click event of the Plain colour choose button
         protected void PlainColourButtonClick(object sender, EventArgs e)
         {
             this.PlainColourChoose();
         }
 
+        // Opens the colordialog and changes the layers' image to that chosen colour
         public void PlainColourChoose()
         {
             // Show the color dialog. If the user clicks OK, load the
             // colour that the user chose.
             if (PlainColourDialog.ShowDialog() == DialogResult.OK)
             {
-                // create an image of the desired size
                 var bm = new Bitmap(Form1.IMG_WIDTH, Form1.IMG_HEIGHT);
 
                 using (var graphics = Graphics.FromImage(bm))
                 {
-                    // set background color
                     graphics.Clear(PlainColourDialog.Color);
                 }
 
-                // Updates the plain colour preview box
+                // Updates the plain colour preview box and layer bitmap
                 this.PlainColourPreview.Image = bm;
-
-                // Update background layer to new colour
                 this.LayerBitmap = bm;
 
                 this.TargetCombinedLayers.ShowCombinedLayers();
@@ -148,10 +147,9 @@ namespace ImageEditor
         }
 
         // ================================== LIST VIEW ===================================
+        // Adds all the premade images to the list of preset images PresetImgs
         public static void InitialisePresets()
         {
-            // Adds all the premade images to the list of preset images PresetImgs
-
             PresetImgList = new ImageList(); // for the listview thumbnails
             PresetImgs = new List<Image>(); // for the preset images
             AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.BgPresetSky);
@@ -161,14 +159,14 @@ namespace ImageEditor
             // list of images is needed to contain the true sized presets.
         }
 
+        // To be used by InitialisePresets. Adds an image to an ImageList and to a list of Images
         private static void AddPresetsToLists(ImageList imgList, List<Image> list, Image img)
         {
-            // To be used by InitialisePresets
-            // Adds an image to an ImageList and to a list of Images
             imgList.Images.Add(img);
             list.Add(img);
         }
 
+        // Initialises the ListView control to contain the preset images.
         private void InitialiseListView()
         {
             //set the small and large ImageList properties of listview
@@ -180,17 +178,19 @@ namespace ImageEditor
             this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 1, Text = "test" });
         }
 
+        // Handles the SelectedIndexChanged event of the ListView
         private void ListViewPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ListViewPresetsChoose();
         }
 
+        // Updates background layer with chosen preset image by retrieving the chosen item index
+        // and retrieving the corresponding preset image from the list of preset images of the same index
         private void ListViewPresetsChoose()
         {
             if (ListViewPresets.SelectedIndices.Count == 1)
             {
-                // Updates background layer with chosen preset image by retrieving the chosen item index
-                // and retrieving the corresponding preset image from the list of preset images of the same index
+                
                 var chosenPreset = this.ListViewPresets.SelectedIndices[0];
                 Image img = PresetImgs[chosenPreset];
                 Bitmap bm = new Bitmap(img, Form1.IMG_WIDTH, Form1.IMG_HEIGHT);
@@ -204,11 +204,9 @@ namespace ImageEditor
         }
 
         // ======================================= CLEAR OPTIONS ======================================
+        // Clears/resets all options to default
         public override void ClearOptions()
         {
-            this.ComboBox.SelectedIndex = 0;
-            this.ComboBoxIndexCheck();
-
             this.PlainColourPreview.Image = new Bitmap(1, 1);
         }
     }

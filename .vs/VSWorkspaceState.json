@@ -2,6 +2,10 @@
   "ExpandedNodes": [
     ""
   ],
+<<<<<<< HEAD
   "SelectedNode": "\\ImageEditor.sln",
+=======
+  "SelectedNode": "\\ImageEditor\\Form1.cs",
+>>>>>>> aeefdb957f88846bb7ff152830caa80c6b6f354c
   "PreviewInSolutionExplorer": false
 }
