@@ -72,8 +72,14 @@ namespace ImageEditor
             this.ListViewPresets.AutoSize = true;
             this.ListViewPresets.SelectedIndexChanged += new EventHandler(this.ListViewPresets_SelectedIndexChanged);
 
-            // Adds the groupgbox to the CombinedLayers' TargetControlsPanel and all the created controls to that groupbox
-            this.TargetCombinedLayers.TargetControlsPanel.Controls.Add(GroupBox);
+            
+
+        }
+
+        // Adds the groupbox to the CombinedLayers' TargetControlsPanel and all the created controls to that groupbox
+        public override void AddControls()
+        {
+            this.TargetCombinedLayers.TargetControlsPanel.Controls.Add(this.GroupBox);
 
             this.GroupBox.Controls.Add(this.TablePlainColour);
             this.TablePlainColour.Controls.Add(this.PlainColourButton);
@@ -82,7 +88,6 @@ namespace ImageEditor
             this.GroupBox.Controls.Add(this.ListViewPresets);
 
             this.GroupBox.Controls.Add(this.ComboBox);
-
         }
 
 
@@ -207,6 +212,8 @@ namespace ImageEditor
         // Clears/resets all options to default
         public override void ClearOptions()
         {
+            this.ComboBox.SelectedIndex = 0;
+            this.ComboBoxIndexCheck();
             this.PlainColourPreview.Image = new Bitmap(1, 1);
         }
     }

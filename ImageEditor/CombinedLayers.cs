@@ -15,7 +15,7 @@ namespace ImageEditor
         public Panel TargetControlsPanel;
         int zoomFactor;
 
-        List<LayerImage> LayerImageList;  // List of Layer objects
+        public List<LayerImage> LayerImageList;  // List of Layer objects
         
 
         public CombinedLayers(PictureBox targetPictureBox, Panel targetControlsPanel)
@@ -77,6 +77,7 @@ namespace ImageEditor
         public void AddLayer(LayerImage layer)
         {
             layer.TargetCombinedLayers = this;
+            layer.AddControls();
             this.LayerImageList.Add(layer);
         }
 

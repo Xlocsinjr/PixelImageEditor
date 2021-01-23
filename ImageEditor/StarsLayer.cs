@@ -8,9 +8,11 @@ using System.Drawing;
 
 namespace ImageEditor
 {
+    // This class defines the controls for a layer of randomly generated stars
     public class StarsLayer : LayerImage
     {
         int StarNoiseThreshold;
+        GroupBox ParentGroupBox;
 
         FlowLayoutPanel FlowPanel;
         CheckBox StarsCheckbox;
@@ -18,16 +20,18 @@ namespace ImageEditor
         TrackBar StarDensityTrackbar;
         Label StarDensityLabel;
 
+        // CONSTRUCTOR sets parent GroupBox and initialises controls
         public StarsLayer(int layerHeight, GroupBox parentGroupbox) : base(layerHeight)
         {
             // This class' controls have to be added to an other groupbox
-            InitialiseStarControls(parentGroupbox);
+            this.ParentGroupBox = parentGroupbox;
+            InitialiseStarControls();
 
         }
 
 
         // ======================================= INITIALISATIONS =================================================
-        private void InitialiseStarControls(GroupBox parentGroupbox)
+        private void InitialiseStarControls()
         {
             this.FlowPanel = new FlowLayoutPanel();
             this.FlowPanel.Dock = DockStyle.Top;
@@ -49,17 +53,20 @@ namespace ImageEditor
             this.StarDensityTrackbar.ValueChanged += new EventHandler(StarDensityTrackbar_ValueChanged);
 
             this.StarDensityLabel = new Label();
+        }
 
-            parentGroupbox.Controls.Add(this.FlowPanel);
+        // Adds the controls to this layers' parent GroupBox
+        public override void AddControls()
+        {
+            this.ParentGroupBox.Controls.Add(this.FlowPanel);
             this.FlowPanel.Controls.Add(this.StarsCheckbox);
             this.FlowPanel.Controls.Add(this.RegenerateButton);
             this.FlowPanel.Controls.Add(this.StarDensityTrackbar);
             this.FlowPanel.Controls.Add(this.StarDensityLabel);
-
         }
 
         // ======================================= BACKGROUND STAR GENERATION ======================================
-
+        // Handles CheckedChanged event of StarCheckBox. Generates stars if checked and clears layer if not.
         private void StarsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // generates white star pixels if checkbox is checked, else clears star layer
@@ -73,6 +80,7 @@ namespace ImageEditor
             }
         }
 
+        // Randomly generates stars (white pixels) based on threshold value
         void GenerateStars()
         {
             // Determine star generation threshold based on trackbar value
@@ -98,13 +106,16 @@ namespace ImageEditor
             this.TargetCombinedLayers.ShowCombinedLayers();
         }
 
+        // Update label for star density
         private void UpdateStarDensityLabel()
         {
-            // Update label for star density
+            
             double starDensity = this.StarDensityTrackbar.Value * 0.10;
             this.StarDensityLabel.Text = "Star density: " + starDensity.ToString() + "%";
         }
 
+        // Handles event for Value Changed of StarDensityTrackbar.
+        // Regenerates the stars if stars checkbox is checked and value of trackbar has changed
         private void StarDensityTrackbar_ValueChanged(object sender, EventArgs e)
         {
             // updates label and regenerate stars
@@ -116,6 +127,7 @@ namespace ImageEditor
         }
 
         // ======================================= CLEAR OPTIONS ======================================
+        // Clears/resets this layers' options to default
         public override void ClearOptions()
         {
             this.StarsCheckbox.Checked = false;
