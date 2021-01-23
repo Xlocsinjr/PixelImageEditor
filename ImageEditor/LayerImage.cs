@@ -38,7 +38,8 @@ namespace ImageEditor
         public abstract void ClearOptions();
         // declared. To be overwritten in child classes.
 
-
+        public abstract void AddControls();
+        // declared. To be overwritten in child classes.
 
 
 

@@ -41,10 +41,6 @@ namespace ImageEditor
             CombinedLayers.AddLayer(ForeGround2);
 
             CombinedLayers.ShowCombinedLayers();
-
-
-            //NewImage();
-
         }
 
         // ======================================= TOOLSTRIP ======================================
