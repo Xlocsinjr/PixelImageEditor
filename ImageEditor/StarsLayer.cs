@@ -12,7 +12,7 @@ namespace ImageEditor
     public class StarsLayer : LayerImage
     {
         int StarNoiseThreshold;
-        GroupBox ParentGroupBox;
+        Panel ParentControlsPanel;
 
         FlowLayoutPanel FlowPanel;
         CheckBox StarsCheckbox;
@@ -21,10 +21,10 @@ namespace ImageEditor
         Label StarDensityLabel;
 
         // CONSTRUCTOR sets parent GroupBox and initialises controls
-        public StarsLayer(int layerHeight, GroupBox parentGroupbox) : base(layerHeight)
+        public StarsLayer(int layerHeight, Panel parentControlsPanel) : base(layerHeight)
         {
             // This class' controls have to be added to an other groupbox
-            this.ParentGroupBox = parentGroupbox;
+            this.ParentControlsPanel = parentControlsPanel;
             InitialiseStarControls();
 
         }
@@ -34,7 +34,7 @@ namespace ImageEditor
         private void InitialiseStarControls()
         {
             this.FlowPanel = new FlowLayoutPanel();
-            this.FlowPanel.Dock = DockStyle.Top;
+            this.FlowPanel.Dock = DockStyle.Fill;
             this.FlowPanel.AutoSize = true;
 
             this.StarsCheckbox = new CheckBox();
@@ -53,12 +53,13 @@ namespace ImageEditor
             this.StarDensityTrackbar.ValueChanged += new EventHandler(StarDensityTrackbar_ValueChanged);
 
             this.StarDensityLabel = new Label();
+            UpdateStarDensityLabel();
         }
 
         // Adds the controls to this layers' parent GroupBox
         public override void AddControls()
         {
-            this.ParentGroupBox.Controls.Add(this.FlowPanel);
+            this.ParentControlsPanel.Controls.Add(this.FlowPanel);
             this.FlowPanel.Controls.Add(this.StarsCheckbox);
             this.FlowPanel.Controls.Add(this.RegenerateButton);
             this.FlowPanel.Controls.Add(this.StarDensityTrackbar);

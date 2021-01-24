@@ -27,10 +27,10 @@ namespace ImageEditor
             ForeLayer.InitialisePresets();
             ForeLayer.PlainColourDialog = colorDialogPlainColour;
 
-            CombinedLayers CombinedLayers = new CombinedLayers(pictureBox1, splitContainer1.Panel2);
+            CombinedLayers CombinedLayers = new CombinedLayers(pictureBox1, tableLayoutPanel1);
             this.activeCombinedLayers = CombinedLayers;
             ForeLayer BackGround = new ForeLayer(0, "Background layers");
-            StarsLayer StarsLayer = new StarsLayer(0, BackGround.GroupBox);
+            StarsLayer StarsLayer = new StarsLayer(0, BackGround.LayoutTable);
             ForeLayer ForeGround = new ForeLayer(80, "Foreground layer 1");
             ForeLayer ForeGround2 = new ForeLayer(100, "Foreground layer 2");
 
