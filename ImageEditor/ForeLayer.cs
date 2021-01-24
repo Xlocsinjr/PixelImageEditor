@@ -17,7 +17,8 @@ namespace ImageEditor
         public static ImageList PresetImgList;
 
         public GroupBox GroupBox;           // public to allow other controls to be added to the groupbox
-        public TableLayoutPanel layoutTable;
+        public TableLayoutPanel LayoutTable;
+        public TableLayoutPanel colourChooseTable;
         protected ComboBox ComboBox;
         protected TableLayoutPanel TablePlainColour;
         protected ListView ListViewPresets;
@@ -31,6 +32,8 @@ namespace ImageEditor
             // Initialisations
             this.InitialiseLayerControls(groupBoxText);
             this.InitialiseListView();
+            this.ComboBox.SelectedIndex = 0;
+            this.ComboBoxIndexCheck();
             this.ClearOptions();
         }
 
@@ -40,9 +43,14 @@ namespace ImageEditor
         {
             this.GroupBox = new GroupBox();
             this.GroupBox.Text = groupBoxText;
-            this.GroupBox.Dock = DockStyle.Top;
+            this.GroupBox.Dock = DockStyle.Fill;
             this.GroupBox.AutoSize = true;
-            this.GroupBox.Padding = new Padding(0, 0, 0, 20);
+
+            this.LayoutTable = new TableLayoutPanel();
+            this.LayoutTable.Dock = DockStyle.Top;
+            this.LayoutTable.AutoSize = true;
+            this.LayoutTable.ColumnCount = 1;
+            this.LayoutTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.00F));
 
             this.ComboBox = new ComboBox();
             this.ComboBox.Dock = DockStyle.Top;
@@ -81,13 +89,12 @@ namespace ImageEditor
         {
             this.TargetCombinedLayers.TargetControlsPanel.Controls.Add(this.GroupBox);
 
-            this.GroupBox.Controls.Add(this.TablePlainColour);
+            this.GroupBox.Controls.Add(this.LayoutTable);
+            this.LayoutTable.Controls.Add(this.ComboBox);
+            this.LayoutTable.Controls.Add(this.ListViewPresets);
+            this.LayoutTable.Controls.Add(this.TablePlainColour);
             this.TablePlainColour.Controls.Add(this.PlainColourButton);
             this.TablePlainColour.Controls.Add(this.PlainColourPreview);
-
-            this.GroupBox.Controls.Add(this.ListViewPresets);
-
-            this.GroupBox.Controls.Add(this.ComboBox);
         }
 
 
@@ -159,6 +166,10 @@ namespace ImageEditor
             PresetImgs = new List<Image>(); // for the preset images
             AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.BgPresetSky);
             AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.testImage);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestCityScape1);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestCityScape2);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestMountains);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestSavannah);
 
             // NOTE: somehow retrieving images from the ImageList only returns a thumbnail sized image so a second
             // list of images is needed to contain the true sized presets.
@@ -181,6 +192,11 @@ namespace ImageEditor
             this.ListViewPresets.View = View.LargeIcon;
             this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 0, Text = "Sky" });
             this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 1, Text = "test" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 2, Text = "Cityscape 1" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 3, Text = "Cityscape 2" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 4, Text = "Mountains" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 5, Text = "Savannah" });
+
         }
 
         // Handles the SelectedIndexChanged event of the ListView
@@ -212,8 +228,6 @@ namespace ImageEditor
         // Clears/resets all options to default
         public override void ClearOptions()
         {
-            this.ComboBox.SelectedIndex = 0;
-            this.ComboBoxIndexCheck();
             this.PlainColourPreview.Image = new Bitmap(1, 1);
         }
     }
