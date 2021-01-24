@@ -95,18 +95,6 @@ namespace ImageEditor
             this.LayoutTable.Controls.Add(this.TablePlainColour);
             this.TablePlainColour.Controls.Add(this.PlainColourButton);
             this.TablePlainColour.Controls.Add(this.PlainColourPreview);
-
-            
-
-            
-
-            //this.GroupBox.Controls.Add(this.TablePlainColour);
-            //this.TablePlainColour.Controls.Add(this.PlainColourButton);
-            //this.TablePlainColour.Controls.Add(this.PlainColourPreview);
-
-            //this.GroupBox.Controls.Add(this.ListViewPresets);
-
-            //this.GroupBox.Controls.Add(this.ComboBox);
         }
 
 
@@ -178,6 +166,10 @@ namespace ImageEditor
             PresetImgs = new List<Image>(); // for the preset images
             AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.BgPresetSky);
             AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.testImage);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestCityScape1);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestCityScape2);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestMountains);
+            AddPresetsToLists(PresetImgList, PresetImgs, Properties.Resources.PresetTestSavannah);
 
             // NOTE: somehow retrieving images from the ImageList only returns a thumbnail sized image so a second
             // list of images is needed to contain the true sized presets.
@@ -200,6 +192,11 @@ namespace ImageEditor
             this.ListViewPresets.View = View.LargeIcon;
             this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 0, Text = "Sky" });
             this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 1, Text = "test" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 2, Text = "Cityscape 1" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 3, Text = "Cityscape 2" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 4, Text = "Mountains" });
+            this.ListViewPresets.Items.Add(new ListViewItem() { ImageIndex = 5, Text = "Savannah" });
+
         }
 
         // Handles the SelectedIndexChanged event of the ListView

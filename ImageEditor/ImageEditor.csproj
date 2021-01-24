@@ -90,5 +90,17 @@
   <ItemGroup>
     <EmbeddedResource Include="SourceImages\presets\BgPresetSky.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SourceImages\presets\PresetTestCityScape1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SourceImages\presets\PresetTestCityScape2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SourceImages\presets\PresetTestMountains.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SourceImages\presets\PresetTestSavannah.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

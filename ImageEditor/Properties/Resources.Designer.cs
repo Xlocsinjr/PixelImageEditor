@@ -73,6 +73,46 @@ namespace ImageEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PresetTestCityScape1 {
+            get {
+                object obj = ResourceManager.GetObject("PresetTestCityScape1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PresetTestCityScape2 {
+            get {
+                object obj = ResourceManager.GetObject("PresetTestCityScape2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PresetTestMountains {
+            get {
+                object obj = ResourceManager.GetObject("PresetTestMountains", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PresetTestSavannah {
+            get {
+                object obj = ResourceManager.GetObject("PresetTestSavannah", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap testImage {
             get {
                 object obj = ResourceManager.GetObject("testImage", resourceCulture);

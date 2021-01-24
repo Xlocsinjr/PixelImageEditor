@@ -31,14 +31,16 @@ namespace ImageEditor
             this.activeCombinedLayers = CombinedLayers;
             ForeLayer BackGround = new ForeLayer(0, "Background layers");
             StarsLayer StarsLayer = new StarsLayer(0, BackGround.LayoutTable);
-            ForeLayer ForeGround = new ForeLayer(80, "Foreground layer 1");
-            ForeLayer ForeGround2 = new ForeLayer(100, "Foreground layer 2");
+            ForeLayer ForeGround = new ForeLayer(50, "Back layer");
+            ForeLayer ForeGround2 = new ForeLayer(60, "Middle layer");
+            ForeLayer ForeGround3 = new ForeLayer(80, "Foreground layer");
 
             // Adds the layers to the list in CombinedLayers
             CombinedLayers.AddLayer(BackGround);
             CombinedLayers.AddLayer(StarsLayer);
             CombinedLayers.AddLayer(ForeGround);
             CombinedLayers.AddLayer(ForeGround2);
+            CombinedLayers.AddLayer(ForeGround3);
 
             CombinedLayers.ShowCombinedLayers();
         }
