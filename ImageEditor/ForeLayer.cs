@@ -18,7 +18,10 @@ namespace ImageEditor
 
         public GroupBox GroupBox;           // public to allow other controls to be added to the groupbox
         public TableLayoutPanel LayoutTable;
-        public TableLayoutPanel colourChooseTable;
+        public TableLayoutPanel ColourChooseTable;
+        protected FlowLayoutPanel HeightFlowLayout;
+        protected Label HeightLabel;
+        protected NumericUpDown HeightUpDown;
         protected ComboBox ComboBox;
         protected TableLayoutPanel TablePlainColour;
         protected ListView ListViewPresets;
@@ -52,6 +55,20 @@ namespace ImageEditor
             this.LayoutTable.ColumnCount = 1;
             this.LayoutTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1.00F));
 
+            this.HeightFlowLayout = new FlowLayoutPanel();
+            this.HeightFlowLayout.Dock = DockStyle.Top;
+            this.HeightFlowLayout.AutoSize = true;
+
+            this.HeightLabel = new Label();
+            this.HeightLabel.Text = "Layer Height ";
+            this.HeightLabel.Padding = new Padding(0, 5, 0, 5);
+
+            this.HeightUpDown = new NumericUpDown();
+            this.HeightUpDown.Maximum = Form1.IMG_HEIGHT;
+            this.HeightUpDown.Minimum = 0;
+            this.HeightUpDown.Value = Form1.IMG_HEIGHT - this.LayerHeight;
+            this.HeightUpDown.ValueChanged += new EventHandler(this.HeightChange);
+
             this.ComboBox = new ComboBox();
             this.ComboBox.Dock = DockStyle.Top;
             this.ComboBox.Items.Add("Plain colour");
@@ -80,23 +97,33 @@ namespace ImageEditor
             this.ListViewPresets.AutoSize = true;
             this.ListViewPresets.SelectedIndexChanged += new EventHandler(this.ListViewPresets_SelectedIndexChanged);
 
-            
-
-        }
-
-        // Adds the groupbox to the CombinedLayers' TargetControlsPanel and all the created controls to that groupbox
-        public override void AddControls()
-        {
-            this.TargetCombinedLayers.TargetControlsPanel.Controls.Add(this.GroupBox);
-
+            // Adds the controls to this layer's Groupbox (but not yet to the Form)
             this.GroupBox.Controls.Add(this.LayoutTable);
+            this.LayoutTable.Controls.Add(this.HeightFlowLayout);
+            this.HeightFlowLayout.Controls.Add(this.HeightLabel);
+            this.HeightFlowLayout.Controls.Add(this.HeightUpDown);
             this.LayoutTable.Controls.Add(this.ComboBox);
             this.LayoutTable.Controls.Add(this.ListViewPresets);
             this.LayoutTable.Controls.Add(this.TablePlainColour);
             this.TablePlainColour.Controls.Add(this.PlainColourButton);
             this.TablePlainColour.Controls.Add(this.PlainColourPreview);
+
         }
 
+        // Adds the groupbox to the CombinedLayers' TargetControlsPanel
+        // To be used after the layer has been assigned to a CombinedLayers
+        public override void AddControls()
+        {
+            this.TargetCombinedLayers.TargetControlsPanel.Controls.Add(this.GroupBox);
+        }
+
+
+        // =========================== HEIGHT CHANGE ===================================
+        protected void HeightChange(object sender, EventArgs e)
+        {
+            this.LayerHeight = Form1.IMG_HEIGHT - Convert.ToInt32(this.HeightUpDown.Value);
+            this.TargetCombinedLayers.ShowCombinedLayers();
+        }
 
         // =========================== COMBO BOX ===================================
         // Sets which controls are visible by which element is chosen in the combobox
@@ -115,7 +142,7 @@ namespace ImageEditor
             }
             else
             {
-                base.ClearLayer();
+                ClearLayer();
             }
             
         }
